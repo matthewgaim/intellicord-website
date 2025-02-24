@@ -13,3 +13,5 @@ export async function GET() {
 
   redirect(authUrl);
 }
+
+export const runtime = 'edge';

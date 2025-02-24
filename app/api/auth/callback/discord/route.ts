@@ -78,3 +78,5 @@ export async function GET(req: NextRequest) {
     redirect(dashboardUrl.toString());
   }
 }
+
+export const runtime = 'edge';

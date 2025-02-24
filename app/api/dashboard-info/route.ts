@@ -10,3 +10,5 @@ export async function GET(req: NextRequest) {
     const userInfo = await userInfoResponse.json();
     NextResponse.json(userInfo);
 }
+
+export const runtime = 'edge';

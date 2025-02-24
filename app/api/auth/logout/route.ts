@@ -6,3 +6,5 @@ export async function GET() {
     cookieStore.delete("token");
     redirect("/")
 }
+
+export const runtime = 'edge';
