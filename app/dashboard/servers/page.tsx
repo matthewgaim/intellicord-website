@@ -111,3 +111,5 @@ function SkeletonGrid() {
     </>
   );
 }
+
+export const runtime = 'edge';
