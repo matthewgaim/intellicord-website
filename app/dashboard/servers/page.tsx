@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Link from "next/link";
-import { getBotInviteUrl, getJoinedServers } from "@/app/actions";
+import { getBotInviteUrl, getJoinedServers } from "@/app/actions/dashboard-info";
 import { Suspense } from "react";
 import ServerSkeleton from "./skeleton";
 import { formatDistanceToNow } from "date-fns"

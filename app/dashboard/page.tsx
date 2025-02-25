@@ -1,5 +1,5 @@
 import { DashboardContent } from "@/components/dashboard/dashboard-content"
-import { getDashboardInfo } from "@/app/actions"
+import { getDashboardInfo } from "@/app/actions/dashboard-info"
 
 export default async function DashboardPage() {
   const data = await getDashboardInfo()
@@ -10,3 +10,5 @@ export default async function DashboardPage() {
       <DashboardContent files_analyzed={files_analyzed} recentFiles={file_details}/>
   )
 }
+
+export const runtime = 'edge';
