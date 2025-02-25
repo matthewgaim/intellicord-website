@@ -2,14 +2,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileAnalysis } from "@/components/dashboard/file-analysis"
 import { FileAnalysisChart } from "@/components/dashboard/file-analysis-chart"
 
-type AnalyzedFile = {
+type FileInfo = {
   name: string
   type: string
-  size: string
+  size: number
   analyzed_date: string
 }
 
-export function DashboardContent({files_analyzed, recentFiles}: {files_analyzed: number, recentFiles: AnalyzedFile[]}) {
+type FilesAnalyzed = {
+  date: string
+  amount: number
+}
+
+export function DashboardContent({files_analyzed, recentFiles}: {files_analyzed: FilesAnalyzed[], recentFiles: FileInfo[]}) {
   return (
     <div className="flex-1 space-y-4 p-8 pt-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -18,7 +23,7 @@ export function DashboardContent({files_analyzed, recentFiles}: {files_analyzed:
             <CardTitle className="text-sm font-medium">Total Files Analyzed</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{files_analyzed}</div>
+            <div className="text-2xl font-bold">{recentFiles.length}</div>
             <p className="text-xs text-muted-foreground">+20.1% from last month</p>
           </CardContent>
         </Card>
