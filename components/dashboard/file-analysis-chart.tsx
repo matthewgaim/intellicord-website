@@ -2,17 +2,17 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts"
 
-const data = [
-  { name: "Mon", files: 12 },
-  { name: "Tue", files: 19 },
-  { name: "Wed", files: 3 },
-  { name: "Thu", files: 5 },
-  { name: "Fri", files: 2 },
-  { name: "Sat", files: 3 },
-  { name: "Sun", files: 10 },
-]
+export function FileAnalysisChart({filesAnalyzed}:{filesAnalyzed: number}) {
+  const data = [
+    { name: "Mon", files: 0 },
+    { name: "Tue", files: 0 },
+    { name: "Wed", files: 0 },
+    { name: "Thu", files: 0 },
+    { name: "Fri", files: 0 },
+    { name: "Sat", files: 0 },
+    { name: "Sun", files: filesAnalyzed },
+  ]
 
-export function FileAnalysisChart() {
   return (
     <Card>
       <CardHeader>

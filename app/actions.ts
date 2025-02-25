@@ -27,3 +27,16 @@ export async function getJoinedServers(){
   const userInfo = await userInfoResponse.json();
   return userInfo
 }
+
+export async function getDashboardInfo(){
+  const { API_URL } = process.env;
+  const cookieStore = await cookies();
+  const access_token = cookieStore.get("token")?.value;
+  const user_id = cookieStore.get("discord_user_id")?.value;
+  const res = await fetch(`${API_URL}/analytics/files-all-servers?user_id=${user_id}`, {
+      method: "GET",
+      headers: {'Authorization': `Bearer ${access_token}`}
+  });
+  const userInfo = await res.json();
+  return userInfo
+}
