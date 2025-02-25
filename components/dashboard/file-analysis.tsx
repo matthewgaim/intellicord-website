@@ -4,11 +4,20 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 type AnalyzedFile = {
   name: string
   type: string
-  size: string
+  size: number
   analyzed_date: string
 }
 
 export function FileAnalysis({recentFiles}: {recentFiles:AnalyzedFile[]}) {
+  function formatBytes(bytes: number, decimals = 2): string {
+    if (bytes === 0) return "0 Bytes";
+
+    const k = 1024;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return `${(bytes / Math.pow(k, i)).toFixed(decimals)} ${sizes[i]}`;
+  }
   return (
     <Card className="col-span-4">
       <CardHeader>
@@ -29,7 +38,7 @@ export function FileAnalysis({recentFiles}: {recentFiles:AnalyzedFile[]}) {
               <TableRow key={file.name}>
                 <TableCell className="font-medium">{file.name}</TableCell>
                 <TableCell>{file.type}</TableCell>
-                <TableCell>{file.size}</TableCell>
+                <TableCell>{formatBytes(file.size)}</TableCell>
                 <TableCell>{file.analyzed_date}</TableCell>
               </TableRow>
             ))}
