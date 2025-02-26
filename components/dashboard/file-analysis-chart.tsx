@@ -8,7 +8,6 @@ type FilesAnalyzed = {
 }
 
 export function FileAnalysisChart({filesAnalyzed}:{filesAnalyzed: FilesAnalyzed[]}) {
-  console.log(filesAnalyzed)
   return (
     <Card>
       <CardHeader>
@@ -18,7 +17,7 @@ export function FileAnalysisChart({filesAnalyzed}:{filesAnalyzed: FilesAnalyzed[
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={filesAnalyzed}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
+            <XAxis dataKey="date" label={"Date"} />
             <YAxis />
             <Tooltip />
             <Line type="monotone" dataKey="amount" stroke="#8884d8" />

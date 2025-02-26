@@ -6,8 +6,9 @@ export default async function DashboardPage() {
   // console.log(data)
   const files_analyzed = data.files_analyzed;
   const file_details = data.file_details;
+  const total_messages_count = data.total_messages_count;
   return (
-      <DashboardContent files_analyzed={files_analyzed} recentFiles={file_details}/>
+      <DashboardContent files_analyzed={files_analyzed} recentFiles={file_details} totalMessagesCount={total_messages_count}/>
   )
 }
 
