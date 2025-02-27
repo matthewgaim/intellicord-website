@@ -21,7 +21,7 @@ export function FileAnalysis({recentFiles}: {recentFiles:AnalyzedFile[]}) {
   return (
     <Card className="col-span-4">
       <CardHeader>
-        <CardTitle>Recent File Analysis</CardTitle>
+        <CardTitle>Recent Files Analyzed</CardTitle>
       </CardHeader>
       <CardContent>
         <Table>

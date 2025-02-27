@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileAnalysis } from "@/components/dashboard/file-analysis"
 import { FileAnalysisChart } from "@/components/dashboard/file-analysis-chart"
+import AnimatedCounter from "../animated-counter"
 
 type FileInfo = {
   name: string
@@ -23,17 +24,15 @@ export function DashboardContent({files_analyzed, recentFiles, totalMessagesCoun
             <CardTitle className="text-sm font-medium">Total Files Analyzed</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{recentFiles?.length}</div>
-            <p className="text-xs text-muted-foreground">+20.1% from last month</p>
+            <AnimatedCounter value={recentFiles?.length} duration={250}/>
           </CardContent>
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">AI Queries Processed</CardTitle>
+            <CardTitle className="text-sm font-medium">Replies Generated</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{totalMessagesCount}</div>
-            <p className="text-xs text-muted-foreground">+15.3% from last month</p>
+            <AnimatedCounter value={totalMessagesCount} duration={500}/>
           </CardContent>
         </Card>
       </div>
