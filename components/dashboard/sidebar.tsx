@@ -4,6 +4,8 @@ import { Home, FileText, BarChart, Settings, HelpCircle } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { usePathname } from 'next/navigation'
+import Image from "next/image"
+import IntellicordLogo from "@/public/intellicord_logo.png"
 
 export const sidebarItems = [
   { name: "Dashboard", icon: Home, href: "/dashboard" },
@@ -16,9 +18,12 @@ export function Sidebar() {
   return (
     <div className="hidden border-r bg-gray-100/40 lg:block dark:bg-gray-800/40">
       <div className="flex h-full max-h-screen flex-col gap-2">
-        <div className="flex h-[60px] items-center border-b px-6">
-          <Link className="flex items-center gap-2 font-semibold" href="/">
-            <span className="text-lg">Intellicord</span>
+        <div className="flex h-[60px] items-center justify-center border-b px-6">
+          <Link className="flex gap-2 font-semibold" href="/dashboard">
+            <Image
+                src={IntellicordLogo}
+                alt="Intellicord Logo"
+                className="w-8 h-8 text-primary"/>
           </Link>
         </div>
         <div className="flex-1 overflow-auto py-2">
