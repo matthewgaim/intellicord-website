@@ -13,7 +13,7 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ReactNode } from "react"
 import Image from "next/image"
 import IntellicordLogo from "@/public/intellicord_logo.png"
@@ -47,11 +47,6 @@ export default function LandingPage() {
                   <NavigationMenuLink className={navigationMenuTriggerStyle()}>How It Works</NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="#pricing" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Pricing</NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
           <Sheet>
@@ -63,17 +58,16 @@ export default function LandingPage() {
             <SheetContent>
               <SheetHeader>
                 <SheetTitle>Intellicord</SheetTitle>
-                <SheetDescription>Navigate through our site</SheetDescription>
               </SheetHeader>
               <div className="flex flex-col space-y-4 mt-4">
+                <Link href="/dashboard" className="text-lg font-medium">
+                  Dashboard
+                </Link>
                 <Link href="#features" className="text-lg font-medium">
                   Features
                 </Link>
                 <Link href="#how-it-works" className="text-lg font-medium">
                   How It Works
-                </Link>
-                <Link href="#pricing" className="text-lg font-medium">
-                  Pricing
                 </Link>
               </div>
             </SheetContent>

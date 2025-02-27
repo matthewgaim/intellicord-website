@@ -123,7 +123,7 @@ async function AddServerButton() {
   const url = await getBotInviteUrl()
 
   return (
-    <Link href={url}>
+    <Link href={url} target="_blank">
       <Button className="gap-2">
         <PlusCircle className="h-4 w-4" />
         Add to Server
