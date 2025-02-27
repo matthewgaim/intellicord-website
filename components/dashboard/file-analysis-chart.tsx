@@ -17,7 +17,7 @@ export function FileAnalysisChart({filesAnalyzed}:{filesAnalyzed: FilesAnalyzed[
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={filesAnalyzed}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" label={"Date"} />
+            <XAxis dataKey="date" />
             <YAxis />
             <Tooltip />
             <Line type="monotone" dataKey="amount" stroke="#8884d8" />
