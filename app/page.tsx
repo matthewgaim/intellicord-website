@@ -15,6 +15,8 @@ import {
 } from "@/components/ui/navigation-menu"
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { ReactNode } from "react"
+import Image from "next/image"
+import IntellicordLogo from "@/public/intellicord_logo.png"
 
 export default function LandingPage() {
   return (
@@ -22,7 +24,10 @@ export default function LandingPage() {
       <header className="container mx-auto px-4 py-6">
         <div className="flex justify-between items-center">
           <div className="flex items-center space-x-2">
-            <Brain className="w-8 h-8 text-primary" />
+            <Image
+              src={IntellicordLogo}
+              alt="Intellicord Logo"
+              className="w-8 h-8 text-primary"/>
             <span className="text-2xl font-bold">Intellicord</span>
           </div>
           <NavigationMenu className="hidden md:flex">
@@ -87,8 +92,8 @@ export default function LandingPage() {
               discussions about your data.
             </p>
             <Button asChild size="lg">
-              <Link href="#">
-                Add to Discord
+              <Link href="/api/auth/login">
+                Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
