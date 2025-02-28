@@ -49,6 +49,8 @@ export async function GET(req: NextRequest) {
     const userInfo = await userInfoResponse.json();
     const uid: string = userInfo.user.id;
     const name: string = userInfo.user.global_name;
+    const avatarHash: string = userInfo.user.avatar;
+    const profilePic = getDiscordAvatarUrl(uid, avatarHash);
     console.log(`${name} logged in (${uid})`)
     // Add to DB
     await fetch(`${API_URL}/adduser`, {
@@ -73,6 +75,12 @@ export async function GET(req: NextRequest) {
       path: "/",
       maxAge: 60 * 60 * 24 * 7, // 1 week
     });
+    cookieStore.set("discord_avatar", profilePic, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7, // 1 week
+    })
   } catch (error) {
     console.error("Error during Discord OAuth2 callback:", error);
     return NextResponse.json({ 
@@ -83,6 +91,12 @@ export async function GET(req: NextRequest) {
     const dashboardUrl = new URL('/dashboard', req.url);
     redirect(dashboardUrl.toString());
   }
+}
+
+function getDiscordAvatarUrl(userId: string, avatarHash: string): string {
+  const isAnimated = avatarHash.startsWith("a_");
+  const extension = isAnimated ? "gif" : "png";
+  return encodeURI(`https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.${extension}`);
 }
 
 export const runtime = 'edge';
