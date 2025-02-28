@@ -9,7 +9,7 @@ interface AnimatedCounterProps {
 }
 
 export default function AnimatedCounter({
-  value = 10000,
+  value = 0,
   duration = 2000,
   formatCompact = true
 }: AnimatedCounterProps) {
