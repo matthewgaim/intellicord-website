@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileAnalysis } from "@/components/dashboard/file-analysis"
 import { FileAnalysisChart } from "@/components/dashboard/file-analysis-chart"
-import AnimatedCounter from "../animated-counter"
+import AnimatedCounter from "@/components/animated-counter"
 
 type FileInfo = {
   name: string
