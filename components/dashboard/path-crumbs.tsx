@@ -6,8 +6,11 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbP
 
 export function PathCrumbs() {
   const pathname = usePathname();
-  const pathSegments = pathname.split("/").filter(Boolean);
-
+  let pathSegments = pathname.split("/").filter(Boolean);
+  // dont show serverid when path is /dashboard/servers/serverid
+  if (pathSegments.length > 2 && pathSegments[1] === "servers"){
+    pathSegments = pathSegments.slice(0,2)
+  }
   const formattedSegments = pathSegments.map(
     (segment) => segment.charAt(0).toUpperCase() + segment.slice(1)
   );

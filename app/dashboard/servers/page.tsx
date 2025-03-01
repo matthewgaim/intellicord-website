@@ -1,30 +1,33 @@
-import { Suspense } from "react"
-import Link from "next/link"
-import { formatDistanceToNow } from "date-fns"
-import { PlusCircle, Server, Users, Settings, Activity } from "lucide-react"
+import { Suspense } from "react";
+import Link from "next/link";
+import { formatDistanceToNow } from "date-fns";
+import { PlusCircle, Server, Users, Settings, Activity } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { getBotInviteUrl, getJoinedServers } from "@/app/actions/dashboard-info"
-import ServerSkeleton from "./skeleton"
-import Image from "next/image"
-import DiscordBoost from "@/public/DiscordBoost.png"
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  getBotInviteUrl,
+  getJoinedServers,
+} from "@/app/actions/dashboard-info";
+import ServerSkeleton from "./skeleton";
+import Image from "next/image";
+import DiscordBoost from "@/public/DiscordBoost.png";
 
 type ServerInfo = {
-  id: number
-  discord_server_id: string
-  joined_at: string
-  name: string
-  member_count: number
-  online_count?: number
-  icon: string
-  premium_tier?: number
-  banner: string
-}
+  id: number;
+  discord_server_id: string;
+  joined_at: string;
+  name: string;
+  member_count: number;
+  online_count?: number;
+  icon: string;
+  premium_tier?: number;
+  banner: string;
+};
 
 export default async function ServersPage() {
-  const servers = await getJoinedServers()
+  const servers = await getJoinedServers();
 
   return (
     <div className="flex-1 space-y-6 p-6 md:p-8">
@@ -33,7 +36,9 @@ export default async function ServersPage() {
           <h2 className="text-3xl font-bold tracking-tight">Your Servers</h2>
           <AddServerButton />
         </div>
-        <p className="text-muted-foreground">Manage your Discord servers where Intellicord is active</p>
+        <p className="text-muted-foreground">
+          Manage your Discord servers where Intellicord is active
+        </p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -44,20 +49,21 @@ export default async function ServersPage() {
         </Suspense>
       </div>
     </div>
-  )
+  );
 }
 
 function ServerCard({ server }: { server: ServerInfo }) {
-  const joinedDate = new Date(server.joined_at)
-  const timeAgo = formatDistanceToNow(joinedDate, { addSuffix: true })
+  const joinedDate = new Date(server.joined_at);
+  const timeAgo = formatDistanceToNow(joinedDate, { addSuffix: true });
 
-  const isRecent = Date.now() - joinedDate.getTime() < 7 * 24 * 60 * 60 * 1000
-  const isBoosted = server.premium_tier && server.premium_tier > 0
+  const isRecent = Date.now() - joinedDate.getTime() < 7 * 24 * 60 * 60 * 1000;
+  const isBoosted = server.premium_tier && server.premium_tier > 0;
 
-  const onlineCount = server.online_count || 0
-  const bannerOrGradient = server.banner?.length > 0
-  ? { backgroundImage: `url(${server.banner})`, backgroundSize: "cover" } 
-  : { backgroundImage: "linear-gradient(to right, #93c5fd, #60a5fa)" }
+  const onlineCount = server.online_count || 0;
+  const bannerOrGradient =
+    server.banner?.length > 0
+      ? { backgroundImage: `url(${server.banner})`, backgroundSize: "cover" }
+      : { backgroundImage: "linear-gradient(to right, #93c5fd, #60a5fa)" };
 
   return (
     <div className="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-md">
@@ -75,7 +81,10 @@ function ServerCard({ server }: { server: ServerInfo }) {
 
         {/* Status badge */}
         <div className="absolute right-3 top-3">
-          <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm">
+          <Badge
+            variant="secondary"
+            className="bg-background/80 backdrop-blur-sm"
+          >
             <span className="mr-1.5 h-2 w-2 rounded-full bg-green-500" />
             Active
           </Badge>
@@ -84,7 +93,11 @@ function ServerCard({ server }: { server: ServerInfo }) {
         {/* Boosted badge */}
         {isBoosted ? (
           <div className="absolute left-3 top-3">
-            <Image src={DiscordBoost} className="h-8 w-8" alt="Discord Boosted"/>
+            <Image
+              src={DiscordBoost}
+              className="h-8 w-8"
+              alt="Discord Boosted"
+            />
           </div>
         ) : null}
       </div>
@@ -95,7 +108,10 @@ function ServerCard({ server }: { server: ServerInfo }) {
           <div className="flex items-center justify-between">
             <h3 className="font-semibold truncate pr-2">{server.name}</h3>
             {isRecent && (
-              <Badge variant="outline" className="text-xs bg-blue-500/10 text-blue-500 border-blue-500/20">
+              <Badge
+                variant="outline"
+                className="text-xs bg-blue-500/10 text-blue-500 border-blue-500/20"
+              >
                 New
               </Badge>
             )}
@@ -123,21 +139,28 @@ function ServerCard({ server }: { server: ServerInfo }) {
 
         {/* Action buttons */}
         <div className="flex gap-2">
-          <Button variant="default" size="sm" className="flex-1">
-            <Settings className="mr-2 h-4 w-4" />
-            Manage
+          <Button variant="default" size="sm" className="flex-1" asChild>
+            <Link href={`/dashboard/servers/${server.discord_server_id}`}>
+              <Settings className="mr-2 h-4 w-4" />
+              Manage
+            </Link>
           </Button>
           <Button variant="outline" size="sm" className="px-2">
-            <Server className="h-4 w-4" />
+            <Link
+              href={`https://discord.com/channels/${server.discord_server_id}`}
+              target="_blank"
+            >
+              <Server className="h-4 w-4" />
+            </Link>
           </Button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 async function AddServerButton() {
-  const url = await getBotInviteUrl()
+  const url = await getBotInviteUrl();
 
   return (
     <Link href={url} target="_blank">
@@ -146,7 +169,7 @@ async function AddServerButton() {
         Add to Server
       </Button>
     </Link>
-  )
+  );
 }
 
 function SkeletonGrid() {
@@ -156,8 +179,7 @@ function SkeletonGrid() {
         <ServerSkeleton key={i} />
       ))}
     </>
-  )
+  );
 }
 
-export const runtime = "edge"
-
+export const runtime = "edge";
