@@ -13,7 +13,7 @@ import {
 import { LogOut, Settings, User } from "lucide-react"
 import { useRouter } from "next/navigation";
 
-export function UserNav({avatar}: {avatar: string}) {
+export function UserNav({avatar, username}: {avatar: string, username: string}) {
   const router = useRouter();
   const handleLogout = async () => {
       try {
@@ -34,16 +34,15 @@ export function UserNav({avatar}: {avatar: string}) {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-12 w-12 border-2 hover:border-[#7e61ab]" >
-            <AvatarImage src={avatar} alt="@username" />
-            <AvatarFallback>UN</AvatarFallback>
+            <AvatarImage src={avatar} alt={`@${username}`} />
+            <AvatarFallback>{username && username[0]}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">Username</p>
-            <p className="text-xs leading-none text-muted-foreground">user@example.com</p>
+            <p className="text-sm font-medium leading-none">@{username}</p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />

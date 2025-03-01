@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar";
 import { Separator } from "@/components/ui/separator";
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb";
 import { UserNav } from "@/components/dashboard/user-nav"
 import { cookies } from "next/headers"
+import React from "react";
+import { PathCrumbs } from "@/components/dashboard/path-crumbs";
 
 export const metadata: Metadata = {
   title: "Dashboard | Intellicord",
@@ -19,7 +20,8 @@ export default async function DashboardLayout({
   const cookieStore = await cookies();
   const discord_avatar_cookie = cookieStore.get("discord_avatar")?.value;
   const discord_avatar = discord_avatar_cookie ? decodeURI(discord_avatar_cookie) : "test.png"
-
+  const discord_username = cookieStore.get("discord_username")?.value || "";
+  
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -28,21 +30,9 @@ export default async function DashboardLayout({
           <div className="flex items-center gap-2">
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-2 h-4" />
-          <Breadcrumb>
-            <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="#">
-                  Building Your Application
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator className="hidden md:block" />
-              <BreadcrumbItem>
-                <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-              </BreadcrumbItem>
-            </BreadcrumbList>
-          </Breadcrumb>
+          <PathCrumbs />
           </div>
-          <UserNav avatar={discord_avatar}/>
+          <UserNav avatar={discord_avatar} username={discord_username}/>
         </header>
         <main className="flex-1">
           <div className="p-4">

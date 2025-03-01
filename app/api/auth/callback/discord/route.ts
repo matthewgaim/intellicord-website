@@ -81,6 +81,12 @@ export async function GET(req: NextRequest) {
       path: "/",
       maxAge: 60 * 60 * 24 * 7, // 1 week
     })
+    cookieStore.set("discord_username", name, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7, // 1 week
+    })
   } catch (error) {
     console.error("Error during Discord OAuth2 callback:", error);
     return NextResponse.json({ 
