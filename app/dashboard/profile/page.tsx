@@ -15,7 +15,6 @@ import {
   Shield,
   Calendar,
   CheckCircle,
-  Settings2,
 } from "lucide-react";
 
 interface UserData {
@@ -148,16 +147,6 @@ export default async function ProfilePage() {
                 </h3>
 
                 <div className="space-y-4">
-                  <div className="flex items-center gap-3">
-                    <User className="h-5 w-5 text-gray-400" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-700">
-                        Account ID
-                      </p>
-                      <p className="text-sm text-gray-500">{userData.id}</p>
-                    </div>
-                  </div>
-
                   {userData.email && (
                     <div className="flex items-center gap-3">
                       <Mail className="h-5 w-5 text-gray-400" />
@@ -173,14 +162,12 @@ export default async function ProfilePage() {
                   )}
 
                   <div className="flex items-center gap-3">
-                    <Calendar className="h-5 w-5 text-gray-400" />
+                    <User className="h-5 w-5 text-gray-400" />
                     <div>
                       <p className="text-sm font-medium text-gray-700">
-                        Preferred Language
+                        Account ID
                       </p>
-                      <p className="text-sm text-gray-500">
-                        {userData.locale || "Not specified"}
-                      </p>
+                      <p className="text-sm text-gray-500">{userData.id}</p>
                     </div>
                   </div>
                 </div>
@@ -205,33 +192,16 @@ export default async function ProfilePage() {
                   </div>
 
                   <div className="flex items-center gap-3">
-                    <Settings2 className="h-5 w-5 text-gray-400" />
+                    <Calendar className="h-5 w-5 text-gray-400" />
                     <div>
                       <p className="text-sm font-medium text-gray-700">
-                        Account Type
+                        Preferred Language
                       </p>
                       <p className="text-sm text-gray-500">
-                        {userData.bot ? "API Account" : "Standard User"}
-                        {userData.system ? " (System)" : ""}
+                        {userData.locale || "Not specified"}
                       </p>
                     </div>
                   </div>
-
-                  {(userData.flags || userData.public_flags) && (
-                    <div className="flex items-center gap-3">
-                      <Settings2 className="h-5 w-5 text-gray-400" />
-                      <div>
-                        <p className="text-sm font-medium text-gray-700">
-                          Account Status
-                        </p>
-                        <p className="text-sm text-gray-500">
-                          {userData.verified
-                            ? "Verified Account"
-                            : "Standard Account"}
-                        </p>
-                      </div>
-                    </div>
-                  )}
                 </div>
               </div>
             </div>
@@ -242,4 +212,4 @@ export default async function ProfilePage() {
   );
 }
 
-export const runtime = 'edge';
+export const runtime = "edge";
