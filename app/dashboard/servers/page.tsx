@@ -8,6 +8,8 @@ import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { getBotInviteUrl, getJoinedServers } from "@/app/actions/dashboard-info"
 import ServerSkeleton from "./skeleton"
+import Image from "next/image"
+import DiscordBoost from "@/public/DiscordBoost.png"
 
 type ServerInfo = {
   id: number
@@ -15,7 +17,10 @@ type ServerInfo = {
   joined_at: string
   name: string
   member_count: number
+  online_count?: number
   icon: string
+  premium_tier?: number
+  banner: string
 }
 
 export default async function ServersPage() {
@@ -46,13 +51,18 @@ function ServerCard({ server }: { server: ServerInfo }) {
   const joinedDate = new Date(server.joined_at)
   const timeAgo = formatDistanceToNow(joinedDate, { addSuffix: true })
 
-  // Determine if server was joined recently (within last 7 days)
   const isRecent = Date.now() - joinedDate.getTime() < 7 * 24 * 60 * 60 * 1000
+  const isBoosted = server.premium_tier && server.premium_tier > 0
+
+  const onlineCount = server.online_count || 0
+  const bannerOrGradient = server.banner?.length > 0
+  ? { backgroundImage: `url(${server.banner})`, backgroundSize: "cover" } 
+  : { backgroundImage: "linear-gradient(to right, #93c5fd, #60a5fa)" }
 
   return (
     <div className="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-md">
       {/* Server banner/header with gradient */}
-      <div className="relative h-24 bg-gradient-to-r from-blue-300 to-blue-400">
+      <div className="relative h-24" style={bannerOrGradient}>
         {/* Server icon */}
         <div className="absolute -bottom-8 left-4">
           <Avatar className="h-16 w-16 rounded-full border-4 border-background shadow-md">
@@ -70,6 +80,13 @@ function ServerCard({ server }: { server: ServerInfo }) {
             Active
           </Badge>
         </div>
+
+        {/* Boosted badge */}
+        {isBoosted ? (
+          <div className="absolute left-3 top-3">
+            <Image src={DiscordBoost} className="h-8 w-8" alt="Discord Boosted"/>
+          </div>
+        ) : null}
       </div>
 
       {/* Server info */}
@@ -91,15 +108,15 @@ function ServerCard({ server }: { server: ServerInfo }) {
           <div className="flex items-center gap-2 rounded-md bg-muted p-2">
             <Users className="h-4 w-4 text-muted-foreground" />
             <div>
-              <p className="text-xs text-muted-foreground">Members</p>
-              <p className="font-medium">{server.member_count.toLocaleString()}</p>
+              <p className="text-xs text-muted-foreground">Online</p>
+              <p className="font-medium">{onlineCount.toLocaleString()}</p>
             </div>
           </div>
           <div className="flex items-center gap-2 rounded-md bg-muted p-2">
             <Activity className="h-4 w-4 text-muted-foreground" />
             <div>
-              <p className="text-xs text-muted-foreground">Commands</p>
-              <p className="font-medium">247</p>
+              <p className="text-xs text-muted-foreground">Active Since</p>
+              <p className="font-medium">{formatDistanceToNow(joinedDate)}</p>
             </div>
           </div>
         </div>
