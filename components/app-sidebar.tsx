@@ -1,6 +1,6 @@
 "use client"
 
-import { BarChart, Home, Server, Settings } from 'lucide-react'
+import { Home, Server, Settings } from 'lucide-react'
 import Link from "next/link"
 import Image from "next/image"
 import IntellicordLogo from "@/public/intellicord_logo.png"
@@ -31,11 +31,6 @@ export function AppSidebar() {
       icon: Server,
     },
     {
-      title: "Analytics",
-      href: "/analytics",
-      icon: BarChart,
-    },
-    {
       title: "Settings",
       href: "/settings",
       icon: Settings,
@@ -45,7 +40,6 @@ export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader className="flex items-center justify-center py-4">
-        {/* Company Logo */}
         <div className="flex items-center gap-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-md">
             <Image

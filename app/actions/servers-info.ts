@@ -47,3 +47,31 @@ export async function getServerInfo(server_id: string){
     return { server: null, error: error };
   }
 }
+
+export async function saveChannelSelections(serverId: string, channelIds: string[]){
+    const { API_URL } = process.env;
+    const cookieStore = await cookies();
+    const user_id = cookieStore.get("discord_user_id")?.value;
+    if (!user_id) return { success: false, message: "Cookies missing" }
+
+    const postData = {
+      user_id: user_id,
+      server_id: serverId,
+      channel_ids: channelIds
+    }
+    const res = await fetch(`${API_URL}/update-allowed-channels`, {
+        method: "POST",
+        body: JSON.stringify(postData)
+    });
+    if (!res.ok) return { success: false, message: "false" }
+    return {success: true, message: "true"}
+}
+
+export async function getAllowedChannels(serverId: string) {
+  const { API_URL } = process.env;
+  const res = await fetch(`${API_URL}/get-allowed-channels?server_id=${serverId}`, {
+    method: "GET",
+  });
+  const data = await res.json();
+  return data.allowed_channels;
+}
