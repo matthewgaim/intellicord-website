@@ -72,3 +72,4 @@ export default async function ServerInfoPage({
   )
 }
 
+export const runtime = 'edge';
