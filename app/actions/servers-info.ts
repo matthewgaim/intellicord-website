@@ -1,4 +1,5 @@
 "use server";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 type ChannelInfo = {
@@ -64,6 +65,7 @@ export async function saveChannelSelections(serverId: string, channelIds: string
         body: JSON.stringify(postData)
     });
     if (!res.ok) return { success: false, message: "false" }
+    revalidatePath(`/dashboard/servers/${serverId}`)
     return {success: true, message: "true"}
 }
 
