@@ -24,7 +24,7 @@ export default async function DashboardLayout({
   
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar profile_pic={discord_avatar} username={discord_username}/>
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center justify-between gap-2 border-b px-4">
           <div className="flex items-center gap-2">

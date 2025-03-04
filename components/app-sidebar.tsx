@@ -8,6 +8,7 @@ import IntellicordLogo from "@/public/intellicord_logo.png"
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -15,9 +16,12 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarSeparator,
 } from "@/components/ui/sidebar"
+import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar'
+import { Avatar } from './ui/avatar'
 
-export function AppSidebar() {
+export function AppSidebar({profile_pic, username}: {profile_pic?: string, username: string}) {
   // Navigation items with icons
   const navItems = [
     {
@@ -33,29 +37,41 @@ export function AppSidebar() {
   ]
 
   return (
-    <Sidebar>
-      <SidebarHeader className="flex items-center justify-center py-4">
-        <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-md">
+    <Sidebar className="border-r border-border">
+      <SidebarHeader className="px-4 py-6">
+        <div className="flex items-center gap-2.5">
+          <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10">
             <Image
               src={IntellicordLogo}
               alt="Intellicord Logo"
-              className="w-8 h-8 text-primary"/>
+              width={24}
+              height={24}
+              className="text-primary"
+            />
           </div>
-          <span className="text-lg font-semibold">Intellicord</span>
+          <span className="text-xl font-semibold tracking-tight">Intellicord</span>
         </div>
       </SidebarHeader>
-      <SidebarContent>
+
+      <SidebarSeparator />
+
+      <SidebarContent className="px-2">
         <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupLabel className="px-2 py-1.5 text-xs font-medium text-muted-foreground">
+            Navigation
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={item.title}>
-                    <Link href={item.href}>
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.title}</span>
+                  <SidebarMenuButton
+                    asChild
+                    tooltip={item.title}
+                    className="gap-3 px-3 py-2 hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <Link href={item.href} className="flex items-center">
+                      <item.icon className="h-5 w-5" />
+                      <span className="font-medium">{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -64,6 +80,20 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+
+      <SidebarFooter className="mt-auto border-t border-border p-4">
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-muted">
+            <Avatar className="h-5 w-5">
+              <AvatarImage src={profile_pic} />
+              <AvatarFallback>{username[0]}</AvatarFallback>
+            </Avatar>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-medium">{username}</span>
+          </div>
+        </div>
+      </SidebarFooter>
     </Sidebar>
   )
 }

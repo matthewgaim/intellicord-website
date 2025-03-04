@@ -42,8 +42,6 @@ export default async function ProfilePage() {
     return <h1>Error </h1>;
   }
   const userData: UserData = resp.user;
-  console.log(userData);
-
   // Function to get avatar URL
   const getAvatarUrl = (user: UserData) => {
     if (user.avatar) {
