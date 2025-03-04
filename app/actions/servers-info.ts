@@ -16,15 +16,15 @@ type ChannelInfo = {
   nsfw: boolean
 }
 
-export async function getServerInfo(server_id: string){
-    const {DISCORD_BOT_TOKEN} = process.env;
+export async function getAllChannelsOfServer(server_id: string){
+  const {DISCORD_BOT_TOKEN} = process.env;
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
   if (!token) {
-    return { server: null, error: 'Unauthorized' };
+    return { all_channels: null, error: 'Unauthorized' };
   }
   if(!server_id) {
-    return {server: null, error: "discord_user_id not in cookies"}
+    return {all_channels: null, error: "discord_user_id not in cookies"}
   }
 
   try {
@@ -42,9 +42,9 @@ export async function getServerInfo(server_id: string){
 
     const resp: ChannelInfo[] = await response.json();
     const filtered = resp.filter((val) => val.type === 0) // only text channels
-    return {server: filtered, error: null}
+    return {all_channels: filtered, error: null}
   } catch (error) {
-    return { server: null, error: error };
+    return { all_channels: null, error: error };
   }
 }
 
@@ -73,5 +73,5 @@ export async function getAllowedChannels(serverId: string) {
     method: "GET",
   });
   const data = await res.json();
-  return data.allowed_channels;
+  return data;
 }

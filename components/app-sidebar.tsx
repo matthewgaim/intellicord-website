@@ -1,6 +1,6 @@
 "use client"
 
-import { Home, Server, Settings } from 'lucide-react'
+import { Home, Server } from 'lucide-react'
 import Link from "next/link"
 import Image from "next/image"
 import IntellicordLogo from "@/public/intellicord_logo.png"
@@ -29,12 +29,7 @@ export function AppSidebar() {
       title: "Servers",
       href: "/dashboard/servers",
       icon: Server,
-    },
-    {
-      title: "Settings",
-      href: "/settings",
-      icon: Settings,
-    },
+    }
   ]
 
   return (
