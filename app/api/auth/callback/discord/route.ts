@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 
@@ -6,15 +6,14 @@ export async function GET(req: NextRequest) {
   const cookieStore = await cookies()
   const code = req.nextUrl.searchParams.get("code");
   const { DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, DISCORD_REDIRECT_URI, API_URL } = process.env;
-  console.log(code)
-  if (!code) {
-    return NextResponse.json({ error: "Authorization code is missing" }, { status: 400 });
-  }
-  if (!DISCORD_CLIENT_ID || !DISCORD_CLIENT_SECRET || !DISCORD_REDIRECT_URI || !API_URL) {
-    return NextResponse.json({ error: "Missing environment variables" }, { status: 500 });
-  }
-
+  let redirectTo = "/dashboard";
   try {
+    if (!code) {
+      throw new Error("Authorization code is missing");
+    }
+    if (!DISCORD_CLIENT_ID || !DISCORD_CLIENT_SECRET || !DISCORD_REDIRECT_URI || !API_URL) {
+      throw new Error("Missing environment variables")
+    }
     const formData = new URLSearchParams();
     formData.append("client_id", DISCORD_CLIENT_ID);
     formData.append("client_secret", DISCORD_CLIENT_SECRET);
@@ -33,10 +32,7 @@ export async function GET(req: NextRequest) {
     const responseText = await tokenResponse.text();
     if (!tokenResponse.ok) {
       const errorData = JSON.parse(responseText);
-      return NextResponse.json({ 
-        error: "Failed to fetch access token",
-        details: errorData
-      }, { status: 500 });
+      throw new Error(errorData)
     }
 
     const { access_token } = JSON.parse(responseText);
@@ -88,15 +84,10 @@ export async function GET(req: NextRequest) {
       maxAge: 60 * 60 * 24 * 7, // 1 week
     })
   } catch (error) {
-    console.error("Error during Discord OAuth2 callback:", error);
-    return NextResponse.json({ 
-      error: "Internal Server Error",
-      details: error instanceof Error ? error.message : String(error)
-    }, { status: 500 });
-  } finally {
-    const dashboardUrl = new URL('/dashboard', req.url);
-    redirect(dashboardUrl.toString());
+    console.error("Error: ",error instanceof Error ? error.message : String(error));
+    redirectTo = "/";
   }
+  redirect(redirectTo)
 }
 
 function getDiscordAvatarUrl(userId: string, avatarHash: string): string {
