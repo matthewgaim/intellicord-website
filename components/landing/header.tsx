@@ -48,12 +48,6 @@ export default function LandingHeader({token, authLink}: {token?: string, authLi
             >
               How It Works
             </Link>
-            <Link
-              href="#community"
-              className="text-sm font-medium text-gray-600 transition-colors hover:text-blue-600"
-            >
-              Community
-            </Link>
             <Button
               className="bg-blue-600 hover:bg-blue-700 text-white border-0"
               asChild

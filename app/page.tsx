@@ -12,9 +12,7 @@ export default async function LandingPage() {
 
   return (
     <div className="flex min-h-[100dvh] flex-col from-white to-purple-50 bg-gradient-to-b">
-      {/* Header */}
       <LandingHeader token={token} authLink={authLink} />
-
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative overflow-hidden py-20 md:py-32">
@@ -36,9 +34,14 @@ export default async function LandingPage() {
                   Intellicord brings AI-powered file analysis straight to your
                   server.
                 </p>
+                <Button
+                  size="lg"
+                  className="md:hidden bg-blue-600 hover:bg-blue-700 text-white border-0 h-12 px-8"
+                  asChild
+                >
+                  <Link href={token ? "/dashboard" : authLink}>{token ? "Dashboard" : "Add to your Server"}</Link>
+                </Button>
               </div>
-
-              {/* Discord-like Chat Demo */}
             </div>
           </div>
         </section>
