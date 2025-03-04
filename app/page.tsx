@@ -1,189 +1,191 @@
-"use client"
-import Link from "next/link"
-import { ArrowRight, Brain, FileText, Share2, Menu } from "lucide-react"
-import { motion } from "motion/react"
+import LandingHeader from "@/components/landing/header";
+import HowItWorks from "@/components/landing/how-it-works";
+import { Button } from "@/components/ui/button";
+import { FileText, MessageSquare, Upload, ChevronRight } from "lucide-react";
+import { cookies } from "next/headers";
+import Link from "next/link";
+import { getAuthLink } from "@/app/actions/landing";
+export default async function LandingPage() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+  const authLink = await getAuthLink();
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { ReactNode } from "react"
-import Image from "next/image"
-import IntellicordLogo from "@/public/intellicord_logo.png"
-
-export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <header className="container mx-auto px-4 py-6">
-        <div className="flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <Image
-              src={IntellicordLogo}
-              alt="Intellicord Logo"
-              className="w-8 h-8 text-primary"/>
-            <span className="text-2xl font-bold">Intellicord</span>
-          </div>
-          <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <Link href="/dashboard" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Dashboard</NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="#features" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>Features</NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="#how-it-works" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>How It Works</NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="outline" size="icon" className="md:hidden">
-                <Menu className="h-4 w-4" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle>Intellicord</SheetTitle>
-              </SheetHeader>
-              <div className="flex flex-col space-y-4 mt-4">
-                <Link href="/dashboard" className="text-lg font-medium">
-                  Dashboard
-                </Link>
-                <Link href="#features" className="text-lg font-medium">
-                  Features
-                </Link>
-                <Link href="#how-it-works" className="text-lg font-medium">
-                  How It Works
-                </Link>
+    <div className="flex min-h-[100dvh] flex-col from-white to-purple-50 bg-gradient-to-b">
+      {/* Header */}
+      <LandingHeader token={token} authLink={authLink} />
+
+      <main className="flex-1">
+        {/* Hero Section */}
+        <section className="relative overflow-hidden py-20 md:py-32">
+          <div className="relative px-4 md:px-6">
+            <div className="flex flex-col items-center text-center space-y-10">
+              <div className="space-y-6 max-w-3xl">
+                <div className="inline-flex items-center rounded-full border border-gray-700 bg-[#1A1D24] px-3 py-1 text-sm text-gray-300">
+                  <span className="flex h-2 w-2 rounded-full bg-green-400 mr-2 animate-pulse"></span>
+                  Now available for all Discord servers
+                </div>
+                <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-gray-900">
+                  Your Discord Server, <br />
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
+                    Boosted with AI
+                  </span>
+                </h1>
+                <p className="mx-auto max-w-[700px] text-gray-600 md:text-xl">
+                  Upload, analyze, and discuss without leaving Discord.
+                  Intellicord brings AI-powered file analysis straight to your
+                  server.
+                </p>
               </div>
-            </SheetContent>
-          </Sheet>
-        </div>
-      </header>
 
-      <main>
-        <section className="container mx-auto px-4 py-20 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-            <h1 className="text-5xl font-bold mb-6 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
-              Unlock the Power of Your Discord Data
-            </h1>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Intellicord analyzes files uploaded to your server, providing instant insights and fostering meaningful
-              discussions about your data.
-            </p>
-            <Button asChild size="lg">
-              <Link href="/api/auth/login">
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </motion.div>
-        </section>
-
-        <section id="features" className="container mx-auto px-4 py-20">
-          <h2 className="text-3xl font-bold mb-12 text-center">Key Features</h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            <FeatureCard
-              icon={<FileText className="w-10 h-10 text-primary" />}
-              title="Smart File Analysis"
-              description="Instantly analyze various file types uploaded to your Discord server."
-            />
-            <FeatureCard
-              icon={<Brain className="w-10 h-10 text-secondary" />}
-              title="AI-Powered Insights"
-              description="Get intelligent insights and summaries from your data using advanced AI."
-            />
-            <FeatureCard
-              icon={<Share2 className="w-10 h-10 text-primary" />}
-              title="Collaborative Understanding"
-              description="Foster discussions and shared understanding of complex data within your community."
-            />
+              {/* Discord-like Chat Demo */}
+            </div>
           </div>
         </section>
 
-        <section id="how-it-works" className="container mx-auto px-4 py-20">
-          <h2 className="text-3xl font-bold mb-12 text-center">How It Works</h2>
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="item-1">
-                  <AccordionTrigger>1. Upload Your File</AccordionTrigger>
-                  <AccordionContent>
-                    Simply upload any supported file type to your Discord server. Intellicord will automatically detect
-                    and process the file.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-2">
-                  <AccordionTrigger>2. AI Analysis</AccordionTrigger>
-                  <AccordionContent>
-                    Intellicord&apos;s advanced AI quickly analyzes the file, extracting key information and generating
-                    valuable insights.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-3">
-                  <AccordionTrigger>3. Receive Insights</AccordionTrigger>
-                  <AccordionContent>
-                    Get a comprehensive summary and analysis directly in your Discord channel, presented in an
-                    easy-to-understand format.
-                  </AccordionContent>
-                </AccordionItem>
-                <AccordionItem value="item-4">
-                  <AccordionTrigger>4. Discuss and Collaborate</AccordionTrigger>
-                  <AccordionContent>
-                    Use the AI-generated insights to spark meaningful discussions and collaborate effectively with your
-                    team or community.
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
+        {/* Features Section */}
+        <section id="features" className="py-20 relative overflow-hidden">
+          <div className="absolute inset-0"></div>
+          <div className="relative px-4 md:px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-900 mb-4">
+                What can it do?
+              </h2>
+              <p className="max-w-[700px] mx-auto text-gray-600 md:text-lg">
+                Intellicord brings the power of AI to your Discord server with
+                these key features
+              </p>
             </div>
-            <div className="relative h-[400px] bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg overflow-hidden">
-              <motion.div
-                className="absolute inset-0 flex items-center justify-center"
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Brain className="w-32 h-32 text-primary" />
-              </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Feature 1 */}
+              <div className="relative group">
+                <div className="relative bg-white p-6 rounded-lg border border-gray-200 h-full">
+                  <div className="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mb-4">
+                    <Upload className="h-6 w-6 text-purple-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    File Upload & Context
+                  </h3>
+                  <p className="text-gray-600">
+                    Upload PDFs, docs, or spreadsheets to your Discord server
+                    and Intellicord will analyze them to provide context-aware
+                    responses.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <div className="flex items-center text-sm text-purple-600">
+                      <span>Supports multiple file formats</span>
+                      <ChevronRight className="h-4 w-4 ml-1" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="relative group">
+                <div className="relative bg-white p-6 rounded-lg border border-gray-200 h-full">
+                  <div className="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mb-4">
+                    <MessageSquare className="h-6 w-6 text-blue-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    Thread-Based Responses
+                  </h3>
+                  <p className="text-gray-600">
+                    Get AI-powered replies in threads based on the context of
+                    your uploaded files and previous messages in the
+                    conversation.
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <div className="flex items-center text-sm text-blue-600">
+                      <span>Maintains conversation context</span>
+                      <ChevronRight className="h-4 w-4 ml-1" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="relative group">
+                <div className="relative bg-white p-6 rounded-lg border border-gray-200 h-full">
+                  <div className="w-12 h-12 rounded-lg bg-cyan-100 flex items-center justify-center mb-4">
+                    <FileText className="h-6 w-6 text-cyan-600" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">
+                    No-Context LLM Chat
+                  </h3>
+                  <p className="text-gray-600">
+                    If you need a quick answer for a question with no previous
+                    context, you can just type <code>/ask</code>
+                  </p>
+                  <div className="mt-6 pt-6 border-t border-gray-200">
+                    <div className="flex items-center text-sm text-cyan-600">
+                      <span>Instant AI assistance</span>
+                      <ChevronRight className="h-4 w-4 ml-1" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works Section */}
+        <section id="how-it-works" className="py-20 relative overflow-hidden">
+          <div className="relative px-4 md:px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-900 mb-4">
+                How It Works
+              </h2>
+              <p className="max-w-[700px] mx-auto text-gray-600 md:text-lg">
+                Get started with Intellicord in just a few steps
+              </p>
+            </div>
+
+            <HowItWorks />
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section id="invite" className="py-20 relative overflow-hidden">
+          <div className="relative px-4 md:px-6">
+            <div className="max-w-3xl mx-auto">
+              <div className="relative">
+                <div className="relative bg-white rounded-xl overflow-hidden border border-gray-200 p-8 md:p-12 shadow-xl">
+                  <div className="text-center mb-8">
+                    <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl text-gray-900 mb-4">
+                      Ready to Get Started?
+                    </h2>
+                    <p className="text-gray-600 md:text-lg">
+                      Add Intellicord to your Discord server today and
+                      experience the power of AI-assisted conversations.
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <Button
+                      size="lg"
+                      className="bg-blue-600 hover:bg-blue-700 text-white border-0 h-12 px-8"
+                      asChild
+                    >
+                      <Link href={authLink}>Add to Discord</Link>
+                    </Button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
-      <footer className="bg-muted py-8">
-        <div className="container mx-auto px-4 text-center text-muted-foreground">
-          <p>&copy; 2025 Senarado Solutions LLC. All rights reserved.</p>
-        </div>
+      {/* Footer */}
+      <footer className="bg-slate-50 border-t border-gray-200 py-4 relative text-center">
+        <p className="text-gray-600 text-sm px-4">
+          © {new Date().getFullYear()} Senarado Solutions LLC. All rights
+          reserved.
+        </p>
       </footer>
     </div>
-  )
+  );
 }
 
-function FeatureCard({ icon, title, description }: {icon: ReactNode, title: string, description: string}) {
-  return (
-    <Card>
-      <CardHeader>
-        <div className="mb-4">{icon}</div>
-        <CardTitle>{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p>{description}</p>
-      </CardContent>
-    </Card>
-  )
-}
-
+export const runtime = "edge";
