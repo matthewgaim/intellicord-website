@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { LogOut, Settings, User } from "lucide-react"
+import { LogOut, User } from "lucide-react"
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -52,12 +52,6 @@ export function UserNav({avatar, username}: {avatar: string, username: string}) 
             <DropdownMenuItem className="cursor-pointer">
               <User className="mr-2 h-4 w-4" />
               <span>Profile</span>
-            </DropdownMenuItem>
-          </Link>
-          <Link href="/dashboard/settings">
-            <DropdownMenuItem className="cursor-pointer">
-              <Settings className="mr-2 h-4 w-4" />
-              <span>Settings</span>
             </DropdownMenuItem>
           </Link>
         </DropdownMenuGroup>
