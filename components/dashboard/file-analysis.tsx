@@ -34,8 +34,8 @@ export function FileAnalysis({recentFiles}: {recentFiles:AnalyzedFile[]}) {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {recentFiles?.map((file) => (
-              <TableRow key={file.name}>
+            {recentFiles?.map((file, idx) => (
+              <TableRow key={idx}>
                 <TableCell className="font-medium">{file.name}</TableCell>
                 <TableCell>{file.type}</TableCell>
                 <TableCell>{formatBytes(file.size)}</TableCell>
