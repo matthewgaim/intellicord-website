@@ -52,7 +52,8 @@ export async function GET(req: NextRequest) {
     await fetch(`${API_URL}/adduser`, {
       method: "POST",
       headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          'Authorization': `Bearer ${access_token}`
       },
       body: JSON.stringify({
           user_id: uid

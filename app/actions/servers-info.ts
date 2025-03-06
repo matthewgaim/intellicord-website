@@ -53,6 +53,7 @@ export async function saveChannelSelections(serverId: string, channelIds: string
     const { API_URL } = process.env;
     const cookieStore = await cookies();
     const user_id = cookieStore.get("discord_user_id")?.value;
+    const access_token = cookieStore.get("token")?.value;
     if (!user_id) return { success: false, message: "Cookies missing" }
 
     const postData = {
@@ -62,6 +63,7 @@ export async function saveChannelSelections(serverId: string, channelIds: string
     }
     const res = await fetch(`${API_URL}/update-allowed-channels`, {
         method: "POST",
+        headers: {'Authorization': `Bearer ${access_token}`},
         body: JSON.stringify(postData)
     });
     if (!res.ok) return { success: false, message: "false" }
@@ -71,8 +73,11 @@ export async function saveChannelSelections(serverId: string, channelIds: string
 
 export async function getAllowedChannels(serverId: string) {
   const { API_URL } = process.env;
+  const cookieStore = await cookies();
+  const access_token = cookieStore.get("token")?.value;
   const res = await fetch(`${API_URL}/get-allowed-channels?server_id=${serverId}`, {
     method: "GET",
+    headers: {'Authorization': `Bearer ${access_token}`}
   });
   const data = await res.json();
   return data;
