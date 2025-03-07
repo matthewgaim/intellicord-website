@@ -148,6 +148,21 @@ export default async function LandingPage() {
           </div>
         </section>
 
+        <section className="py-20 relative overflow-hidden">
+          <h2 className="text-center text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-gray-900 mb-4">
+            See It In Action
+          </h2>
+          <div className="w-full max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/IGxUmg-nxUw?controls=0&modestbranding=1&showinfo=0&rel=0&mute=1&vq=hd1080p"
+              title="YouTube video player"
+              allow="encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </section>
+
         {/* CTA Section */}
         <section id="invite" className="py-20 relative overflow-hidden">
           <div className="relative px-4 md:px-6">
