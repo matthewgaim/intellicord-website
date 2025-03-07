@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
-import { PlusCircle, Server, Users, Settings, Activity } from "lucide-react";
+import { PlusCircle, Server, Users, Settings } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,7 @@ import {
 import ServerSkeleton from "./skeleton";
 import Image from "next/image";
 import DiscordBoost from "@/public/DiscordBoost.png";
+import * as motion from "motion/react-client";
 
 type ServerInfo = {
   id: number;
@@ -66,10 +67,11 @@ function ServerCard({ server }: { server: ServerInfo }) {
       : { backgroundImage: "linear-gradient(to right, #93c5fd, #60a5fa)" };
 
   return (
-    <div className="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-md">
-      {/* Server banner/header with gradient */}
+    <motion.div
+      whileHover={{ scale: 1.03 }}
+      className="group relative overflow-hidden rounded-xl border bg-card transition-all hover:shadow-lg"
+    >
       <div className="relative h-24" style={bannerOrGradient}>
-        {/* Server icon */}
         <div className="absolute -bottom-8 left-4">
           <Avatar className="h-16 w-16 rounded-full border-4 border-background shadow-md">
             <AvatarImage src={server.icon} alt={server.name} />
@@ -78,8 +80,6 @@ function ServerCard({ server }: { server: ServerInfo }) {
             </AvatarFallback>
           </Avatar>
         </div>
-
-        {/* Status badge */}
         <div className="absolute right-3 top-3">
           <Badge
             variant="secondary"
@@ -89,8 +89,6 @@ function ServerCard({ server }: { server: ServerInfo }) {
             Active
           </Badge>
         </div>
-
-        {/* Boosted badge */}
         {isBoosted ? (
           <div className="absolute left-3 top-3">
             <Image
@@ -101,12 +99,12 @@ function ServerCard({ server }: { server: ServerInfo }) {
           </div>
         ) : null}
       </div>
-
-      {/* Server info */}
       <div className="p-4 pt-10">
         <div className="mb-4">
           <div className="flex items-center justify-between">
-            <h3 className="font-semibold truncate pr-2">{server.name}</h3>
+            <h3 className="font-semibold truncate text-lg pr-2">
+              {server.name}
+            </h3>
             {isRecent && (
               <Badge
                 variant="outline"
@@ -118,8 +116,6 @@ function ServerCard({ server }: { server: ServerInfo }) {
           </div>
           <p className="text-xs text-muted-foreground">Joined {timeAgo}</p>
         </div>
-
-        {/* Server stats */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           <div className="flex items-center gap-2 rounded-md bg-muted p-2">
             <Users className="h-4 w-4 text-muted-foreground" />
@@ -128,24 +124,24 @@ function ServerCard({ server }: { server: ServerInfo }) {
               <p className="font-medium">{onlineCount.toLocaleString()}</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 rounded-md bg-muted p-2">
-            <Activity className="h-4 w-4 text-muted-foreground" />
-            <div>
-              <p className="text-xs text-muted-foreground">Active Since</p>
-              <p className="font-medium">{formatDistanceToNow(joinedDate)}</p>
-            </div>
-          </div>
         </div>
-
-        {/* Action buttons */}
         <div className="flex gap-2">
-          <Button variant="default" size="sm" className="flex-1" asChild>
+          <Button
+            variant="default"
+            size="sm"
+            className="flex-1 hover:bg-blue-600"
+            asChild
+          >
             <Link href={`/dashboard/servers/${server.discord_server_id}`}>
               <Settings className="mr-2 h-4 w-4" />
               Manage
             </Link>
           </Button>
-          <Button variant="outline" size="sm" className="px-2">
+          <Button
+            variant="outline"
+            size="sm"
+            className="px-2 hover:border-blue-500"
+          >
             <Link
               href={`https://discord.com/channels/${server.discord_server_id}`}
               target="_blank"
@@ -155,7 +151,7 @@ function ServerCard({ server }: { server: ServerInfo }) {
           </Button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
