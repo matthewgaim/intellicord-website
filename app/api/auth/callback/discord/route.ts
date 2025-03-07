@@ -46,6 +46,7 @@ export async function GET(req: NextRequest) {
     const uid: string = userInfo.user.id;
     const name: string = userInfo.user.global_name;
     const avatarHash: string = userInfo.user.avatar;
+    const full_discord_username: string = `${userInfo.user.username}#${userInfo.user.discriminator}`
     const profilePic = getDiscordAvatarUrl(uid, avatarHash);
     console.log(`${name} logged in (${uid})`)
     // Add to DB
@@ -56,7 +57,8 @@ export async function GET(req: NextRequest) {
           'Authorization': `Bearer ${access_token}`
       },
       body: JSON.stringify({
-          user_id: uid
+          user_id: uid,
+          username: full_discord_username
       })
     })
     
