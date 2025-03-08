@@ -155,7 +155,7 @@ export default async function LandingPage() {
           <div className="w-full max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden shadow-lg">
             <iframe
               className="w-full h-full"
-              src="https://www.youtube.com/embed/IGxUmg-nxUw?controls=0&modestbranding=1&showinfo=0&rel=0&mute=1&vq=hd1080p"
+              src="https://www.youtube.com/embed/8qAV7Zcp2KY?controls=0&modestbranding=1&showinfo=0&rel=0&mute=1&vq=hd1080p"
               title="YouTube video player"
               allow="encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
