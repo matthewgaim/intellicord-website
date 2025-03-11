@@ -85,3 +85,5 @@ export default function Return() {
 
   return null;
 }
+
+export const runtime = 'edge';
