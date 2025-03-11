@@ -109,7 +109,7 @@ export default function PricingPage() {
           </CardContent>
           <CardFooter>
             <Button
-              onClick={() => setPriceId("price_1R0uCFGxULXp33HpFk5b8j7a")}
+              onClick={() => setPriceId("price_1R1L3zGd3jbYC6UDzv5EZuAy")}
               className="w-full"
             >
               Choose Basic
@@ -162,7 +162,7 @@ export default function PricingPage() {
           <CardFooter>
             <Button
               className="w-full"
-              onClick={() => setPriceId("price_1R0waaGxULXp33Hpr8f9sL6h")}
+              onClick={() => setPriceId("price_1R1L45Gd3jbYC6UDgjqdoGI1")}
             >
               Choose Ultimate
             </Button>
