@@ -53,10 +53,6 @@ export default function PricingPage() {
                 <Check className="h-5 w-5 text-primary mr-2" />
                 <span>Basic file types support</span>
               </li>
-              <li className="flex items-center">
-                <Check className="h-5 w-5 text-primary mr-2" />
-                <span>Community support</span>
-              </li>
             </ul>
           </CardContent>
           <CardFooter>
@@ -68,7 +64,7 @@ export default function PricingPage() {
 
         {/* Basic Plan */}
         <Card className="flex flex-col border-2 border-primary relative">
-          <div className="absolute top-0 right-0 left-0 bg-primary text-primary-foreground text-center py-1 text-sm font-medium">
+          <div className="rounded-md absolute top-0 right-0 left-0 bg-primary text-primary-foreground text-center py-1 text-sm font-medium">
             Most Popular
           </div>
           <CardHeader className="flex flex-col space-y-1.5 pt-8">
@@ -95,21 +91,13 @@ export default function PricingPage() {
               </li>
               <li className="flex items-center">
                 <Check className="h-5 w-5 text-primary mr-2" />
-                <span>Advanced file types support</span>
-              </li>
-              <li className="flex items-center">
-                <Check className="h-5 w-5 text-primary mr-2" />
-                <span>Priority support</span>
-              </li>
-              <li className="flex items-center">
-                <Check className="h-5 w-5 text-primary mr-2" />
-                <span>Custom thread templates</span>
+                <span>All file types support</span>
               </li>
             </ul>
           </CardContent>
           <CardFooter>
             <Button
-              onClick={() => setPriceId("price_1R1L3zGd3jbYC6UDzv5EZuAy")}
+              onClick={() => setPriceId(process.env.NEXT_PUBLIC_BASIC_STRIPE_SUBSCRIPTION_ID!)}
               className="w-full"
             >
               Choose Basic
@@ -121,7 +109,7 @@ export default function PricingPage() {
         <Card className="flex flex-col border-2">
           <CardHeader className="flex flex-col space-y-1.5">
             <CardTitle className="text-2xl">Premium</CardTitle>
-            <CardDescription>For active Discord communities</CardDescription>
+            <CardDescription>For active Discord servers</CardDescription>
             <div className="mt-4">
               <span className="text-4xl font-bold">$29.99</span>
               <span className="text-muted-foreground ml-1">/month</span>
@@ -143,28 +131,16 @@ export default function PricingPage() {
               </li>
               <li className="flex items-center">
                 <Check className="h-5 w-5 text-primary mr-2" />
-                <span>All file types supported</span>
-              </li>
-              <li className="flex items-center">
-                <Check className="h-5 w-5 text-primary mr-2" />
                 <span>Dedicated support</span>
-              </li>
-              <li className="flex items-center">
-                <Check className="h-5 w-5 text-primary mr-2" />
-                <span>Advanced analytics</span>
-              </li>
-              <li className="flex items-center">
-                <Check className="h-5 w-5 text-primary mr-2" />
-                <span>Custom AI fine-tuning</span>
               </li>
             </ul>
           </CardContent>
           <CardFooter>
             <Button
               className="w-full"
-              onClick={() => setPriceId("price_1R1L45Gd3jbYC6UDgjqdoGI1")}
+              onClick={() => setPriceId(process.env.NEXT_PUBLIC_PREMIUM_STRIPE_SUBSCRIPTION_ID!)}
             >
-              Choose Ultimate
+              Choose Premium
             </Button>
           </CardFooter>
         </Card>

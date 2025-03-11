@@ -65,8 +65,7 @@ export default async function ProfilePage() {
     }
     return user.username.substring(0, 2).toUpperCase();
   };
-
-  const isPremium = dbUserInfo?.plan !== "Free";
+  const isPremium = dbUserInfo?.plan !== "free";
 
   return (
     <div className="p-6 flex flex-col items-center justify-center">
@@ -110,12 +109,12 @@ export default async function ProfilePage() {
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <Gem className="h-5 w-5 text-purple-700" />
+                    <Gem className={cn("h-5 w-5", dbUserInfo?.plan === 'free' ? ' text-gray-700' : 'text-purple-700')}/>
                     <div>
                       <p className="text-sm font-medium text-gray-700">
                         Account Type
                       </p>
-                      <p className="text-sm text-gray-500">
+                      <p className="text-sm capitalize text-gray-500">
                         {dbUserInfo?.plan}
                       </p>
                     </div>
