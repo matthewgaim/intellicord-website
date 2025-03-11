@@ -70,3 +70,39 @@ export async function getDiscordProfileInfo(){
     return { user: null, error: error };
   }
 }
+
+interface DBUserInfo {
+  price_id: string;
+  plan: string;
+  joined_at: Date
+}
+export async function getDBUserInfo(){
+  const { API_URL } = process.env;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+  const discord_user_id = cookieStore.get("discord_user_id")?.value;
+  if (!token) {
+    return { user: null, error: 'Unauthorized' };
+  }
+  if(!discord_user_id) {
+    return {user: null, error: "discord_user_id not in cookies"}
+  }
+
+  try {
+    const response = await fetch(`${API_URL}/get-user-info?user_id=${discord_user_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      console.log(await response.text())
+      throw new Error('Failed to fetch user information');
+    }
+
+    const resp: DBUserInfo = await response.json();
+    return {user: resp, error: null}
+  } catch (error) {
+    return { user: null, error: error };
+  }
+}
