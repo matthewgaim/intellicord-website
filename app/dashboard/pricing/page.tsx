@@ -53,6 +53,10 @@ export default function PricingPage() {
                 <Check className="h-5 w-5 text-primary mr-2" />
                 <span>Basic file types support</span>
               </li>
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-primary mr-2" />
+                <span>1 discord server</span>
+              </li>
             </ul>
           </CardContent>
           <CardFooter>
@@ -92,6 +96,10 @@ export default function PricingPage() {
               <li className="flex items-center">
                 <Check className="h-5 w-5 text-primary mr-2" />
                 <span>All file types support</span>
+              </li>
+              <li className="flex items-center">
+                <Check className="h-5 w-5 text-primary mr-2" />
+                <span>Unlimited servers</span>
               </li>
             </ul>
           </CardContent>

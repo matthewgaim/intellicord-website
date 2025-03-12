@@ -109,7 +109,7 @@ export default async function ProfilePage() {
 
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <Gem className={cn("h-5 w-5", dbUserInfo?.plan === 'free' ? ' text-gray-700' : 'text-purple-700')}/>
+                    <Gem className={cn("h-5 w-5", dbUserInfo?.plan === 'free' ? ' text-gray-400' : 'text-purple-700')}/>
                     <div>
                       <p className="text-sm font-medium text-gray-700">
                         Account Type
