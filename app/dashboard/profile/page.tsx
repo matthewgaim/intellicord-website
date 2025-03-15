@@ -45,13 +45,23 @@ export default async function ProfilePage() {
   const userData: UserData = resp.user;
   const dbUserInfo = db_resp.user;
 
-  // Function to get avatar URL
   const getAvatarUrl = (user: UserData) => {
     if (user.avatar) {
-      return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+      const isAnimated = user.avatar?.startsWith("a_");
+      const extension = isAnimated ? "gif" : "png";
+      return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${extension}`;
     }
     return "";
   };
+
+  const getBannerUrl = (user: UserData) => {
+    if (user.banner) {
+      const isAnimated = user.banner?.startsWith("a_");
+      const extension = isAnimated ? "gif" : "png";
+      return `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${extension}?size=1024`
+    }
+    return null
+  }
 
   // Function to get user's initials for avatar fallback
   const getUserInitials = (user: UserData) => {
@@ -66,31 +76,31 @@ export default async function ProfilePage() {
     return user.username.substring(0, 2).toUpperCase();
   };
   const isPremium = dbUserInfo?.plan !== "free";
+  const bannerUrl = getBannerUrl(userData);
+  const bannerStyle = bannerUrl
+    ? { backgroundImage: `url(${bannerUrl})` }
+    : userData.accent_color
+      ? { backgroundColor: `#${userData.accent_color.toString(16)}` }
+      : { backgroundColor: "#5865F2" } // Discord default blue as fallback
 
   return (
     <div className="p-6 flex flex-col items-center justify-center">
       <div className="w-full max-w-3xl">
-        <Card className="shadow-md bg-white">
-          <CardHeader className="pb-2">
+        <Card className="shadow-md bg-white overflow-hidden">
+          <div className="h-32 w-full bg-cover bg-center" style={bannerStyle} />
+          <CardHeader className="pb-2 relative">
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-4">
-                <Avatar className="h-20 w-20 border border-gray-200">
-                  <AvatarImage
-                    src={getAvatarUrl(userData)}
-                    alt={userData.username}
-                  />
+                <Avatar className="h-20 w-20 border-4 border-white shadow-md absolute -top-10">
+                  <AvatarImage src={getAvatarUrl(userData)} alt={userData.username} />
                   <AvatarFallback className="bg-blue-100 text-blue-600 text-xl font-semibold">
                     {getUserInitials(userData)}
                   </AvatarFallback>
                 </Avatar>
 
-                <div>
-                  <CardTitle className="text-xl text-gray-800">
-                    {userData.global_name || userData.username}
-                  </CardTitle>
-                  <CardDescription className="text-gray-500">
-                    @{userData.username}
-                  </CardDescription>
+                <div className="mt-10">
+                  <CardTitle className="text-xl text-gray-800">{userData.global_name || userData.username}</CardTitle>
+                  <CardDescription className="text-gray-500">@{userData.username}</CardDescription>
                 </div>
               </div>
 
