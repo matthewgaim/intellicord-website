@@ -11,7 +11,7 @@ interface UpgradeButtonProps {
   size?: "sm" | "default" | "lg";
 }
 
-function PremiumUpgradeButton({ size }: { size?: "sm" | "default" | "lg" }) {
+function UpgradeProfileButton({ size }: { size?: "sm" | "default" | "lg" }) {
   return (
     <Button
       variant="default"
@@ -23,13 +23,13 @@ function PremiumUpgradeButton({ size }: { size?: "sm" | "default" | "lg" }) {
     >
       <Link href="/dashboard/pricing" className="flex items-center">
         <Gem className="mr-2 h-4 w-4" />
-        Manage Subscription
+        Upgrade Profile
       </Link>
     </Button>
   );
 }
 
-function DefaultUpgradeButton({ size }: { size?: "sm" | "default" | "lg" }) {
+function ManageSubscriptionButton({ size }: { size?: "sm" | "default" | "lg" }) {
   const sendUserToPortal = async () => {
     const { url } = await getStripePortalLink();
     if (url) {
@@ -49,9 +49,9 @@ export function UpgradeButton({
   size = "default",
 }: UpgradeButtonProps) {
   return variant === "premium" ? (
-    <PremiumUpgradeButton size={size} />
+    <UpgradeProfileButton size={size} />
   ) : (
-    <DefaultUpgradeButton size={size} />
+    <ManageSubscriptionButton size={size} />
   );
 }
 
