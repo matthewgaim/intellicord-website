@@ -13,9 +13,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { User, Mail, Shield, Calendar, Gem } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { UpgradeButton } from "./upgrade-button";
 
 interface UserData {
   id: string;
@@ -200,33 +199,6 @@ export default async function ProfilePage() {
         </Card>
       </div>
     </div>
-  );
-}
-
-interface UpgradeButtonProps {
-  variant?: "default" | "premium" | "outline";
-  size?: "sm" | "default" | "lg";
-}
-function UpgradeButton({
-  variant = "premium",
-  size = "default",
-}: UpgradeButtonProps) {
-  return (
-    <Button
-      variant={variant === "premium" ? "default" : variant}
-      className={cn(
-        "font-medium relative overflow-hidden",
-        variant === "premium" && 
-          "text-white inline-flex h-12 animate-shimmer items-center justify-center rounded-md border border-slate-800 bg-[linear-gradient(110deg,#771a98,45%,#d2cece,55%,#771a98)] bg-[length:200%_100%] px-6 font-medium  transition-colors"
-      )}
-      size={size}
-      asChild
-    >
-      <Link href="/dashboard/pricing">
-        <Gem className="mr-2 h-4 w-4" />
-        Upgrade Profile
-      </Link>
-    </Button>
   );
 }
 

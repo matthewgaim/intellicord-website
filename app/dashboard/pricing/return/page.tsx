@@ -69,7 +69,7 @@ export default function Return() {
               </div>
 
               <div className="text-center text-sm text-muted-foreground">
-                <p>A confirmation has been sent to your email address.</p>
+                <p>A confirmation has been sent to your email address from Senarado Solutions LLC.</p>
               </div>
             </CardContent>
             <CardFooter className="flex flex-col space-y-2">

@@ -74,7 +74,7 @@ export async function getDiscordProfileInfo(){
 interface DBUserInfo {
   price_id: string;
   plan: string;
-  joined_at: Date
+  joined_at: Date;
 }
 export async function getDBUserInfo(){
   const { API_URL } = process.env;
@@ -104,5 +104,30 @@ export async function getDBUserInfo(){
     return {user: resp, error: null}
   } catch (error) {
     return { user: null, error: error };
+  }
+}
+
+export async function getStripePortalLink() {
+  const { API_URL } = process.env;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("token")?.value;
+  const discord_user_id = cookieStore.get("discord_user_id")?.value;
+  if (!token) {
+    return { url: null, error: 'Unauthorized' };
+  }
+  if(!discord_user_id) {
+    return {url: null, error: "discord_user_id not in cookies"}
+  }
+  try {
+    const resp = await fetch(`${API_URL}/get-stripe-portal?discord_id=${discord_user_id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const portal_json: {url: string} = await resp.json();
+    return {url: portal_json.url, error: null};
+  } catch (error) {
+    console.error(error)
+    return {url: null, error: "Error getting portal link"}
   }
 }
