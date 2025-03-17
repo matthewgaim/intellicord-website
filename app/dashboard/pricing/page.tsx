@@ -60,7 +60,7 @@ export default function PricingPage() {
             </ul>
           </CardContent>
           <CardFooter>
-            <Button asChild className="w-full">
+            <Button disabled className="w-full">
               <Link href="/signup">Get Started</Link>
             </Button>
           </CardFooter>
@@ -161,7 +161,7 @@ export default function PricingPage() {
           custom plans tailored to your needs.
         </p>
         <Button asChild variant="outline" size="lg">
-          <Link href="/contact">Contact Sales</Link>
+          <Link href="mailto:matthewgaim@gmail.com">Let's Talk</Link>
         </Button>
       </div>
     </div>
