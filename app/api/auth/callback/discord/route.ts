@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
+import { getDiscordAvatarUrl } from "@/lib/utils";
 
 export async function GET(req: NextRequest) {
   const cookieStore = await cookies()
@@ -91,12 +92,6 @@ export async function GET(req: NextRequest) {
     redirectTo = "/";
   }
   redirect(redirectTo)
-}
-
-function getDiscordAvatarUrl(userId: string, avatarHash: string): string {
-  const isAnimated = avatarHash.startsWith("a_");
-  const extension = isAnimated ? "gif" : "png";
-  return encodeURI(`https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.${extension}`);
 }
 
 export const runtime = 'edge';

@@ -13,7 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { User, Mail, Shield, Calendar, Gem } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, getDiscordAvatarUrl, getDiscordBannerURL } from "@/lib/utils";
 import { UpgradeButton } from "./upgrade-button";
 
 interface UserData {
@@ -43,24 +43,8 @@ export default async function ProfilePage() {
   }
   const userData: UserData = resp.user;
   const dbUserInfo = db_resp.user;
-
-  const getAvatarUrl = (user: UserData) => {
-    if (user.avatar) {
-      const isAnimated = user.avatar?.startsWith("a_");
-      const extension = isAnimated ? "gif" : "png";
-      return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${extension}`;
-    }
-    return "";
-  };
-
-  const getBannerUrl = (user: UserData) => {
-    if (user.banner) {
-      const isAnimated = user.banner?.startsWith("a_");
-      const extension = isAnimated ? "gif" : "png";
-      return `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${extension}?size=1024`
-    }
-    return null
-  }
+  const avatar_url = getDiscordAvatarUrl(userData.id, userData.avatar)
+  const banner_url = getDiscordBannerURL(userData.id, userData.banner)
 
   // Function to get user's initials for avatar fallback
   const getUserInitials = (user: UserData) => {
@@ -75,9 +59,8 @@ export default async function ProfilePage() {
     return user.username.substring(0, 2).toUpperCase();
   };
   const isPremium = dbUserInfo?.plan !== "free";
-  const bannerUrl = getBannerUrl(userData);
-  const bannerStyle = bannerUrl
-    ? { backgroundImage: `url(${bannerUrl})` }
+  const bannerStyle = banner_url
+    ? { backgroundImage: `url(${banner_url})` }
     : userData.accent_color
       ? { backgroundColor: `#${userData.accent_color.toString(16)}` }
       : { backgroundColor: "#5865F2" } // Discord default blue as fallback
@@ -91,7 +74,7 @@ export default async function ProfilePage() {
             <div className="flex items-center justify-between w-full">
               <div className="flex items-center gap-4">
                 <Avatar className="h-20 w-20 border-4 border-white shadow-md absolute -top-10">
-                  <AvatarImage src={getAvatarUrl(userData)} alt={userData.username} />
+                  <AvatarImage src={avatar_url} alt={userData.username} />
                   <AvatarFallback className="bg-blue-100 text-blue-600 text-xl font-semibold">
                     {getUserInitials(userData)}
                   </AvatarFallback>
