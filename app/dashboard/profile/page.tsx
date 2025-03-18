@@ -36,8 +36,7 @@ interface UserData {
 }
 
 export default async function ProfilePage() {
-  const resp = await getDiscordProfileInfo();
-  const db_resp = await getDBUserInfo();
+  const [resp, db_resp] = await Promise.all([getDiscordProfileInfo(), getDBUserInfo()])
   if (resp.error || db_resp.error) {
     return <h1>Error </h1>;
   }
