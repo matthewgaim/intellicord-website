@@ -53,7 +53,7 @@ export default async function ServerInfoPage({
   return (
     <div className="py-8 md:px-16 w-auto">
       <div className="flex items-center gap-2 pb-4">
-        <Avatar className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
+        <Avatar className="h-16 w-16 rounded-full flex items-center justify-center">
           <AvatarImage
             src={`https://cdn.discordapp.com/icons/${server_id}/${server_info.icon}.webp`}
           />
