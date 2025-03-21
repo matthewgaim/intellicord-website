@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { FileText } from "lucide-react"
 
 type AnalyzedFile = {
   name: string
@@ -21,7 +22,10 @@ export function FileAnalysis({recentFiles}: {recentFiles:AnalyzedFile[]}) {
   return (
     <Card className="col-span-4">
       <CardHeader>
-        <CardTitle>Recent Files Analyzed</CardTitle>
+        <CardTitle className="flex items-center gap-2">
+          <FileText className="h-5 w-5 text-primary" />
+          Recent Files Uploaded
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <Table>

@@ -22,7 +22,6 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 import { ToastAction } from "@/components/ui/toast";
 
 type Channel = {
@@ -192,11 +191,8 @@ export function ChannelSelector({
         </div>
       </div>
 
-      <Separator />
-
       {/* Channel Preview */}
       <div className="space-y-4">
-        <h3 className="text-sm font-medium">Channel Preview</h3>
         {selectedChannels.length > 0 ? (
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {channels
