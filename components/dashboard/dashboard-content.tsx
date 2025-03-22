@@ -3,11 +3,13 @@ import { FileAnalysis } from "@/components/dashboard/file-analysis"
 import { FileAnalysisChart } from "@/components/dashboard/file-analysis-chart"
 import AnimatedCounter from "@/components/animated-counter"
 
-type FileInfo = {
+export type FileInfo = {
   name: string
   type: string
   size: number
   analyzed_date: string
+  uploader_id: string
+  discord_server_id: string
 }
 
 type FilesAnalyzed = {
@@ -41,4 +43,3 @@ export function DashboardContent({files_analyzed, recentFiles, totalMessagesCoun
     </div>
   )
 }
-
