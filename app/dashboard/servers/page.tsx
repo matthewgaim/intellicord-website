@@ -129,7 +129,7 @@ function ServerCard({ server }: { server: ServerInfo }) {
           <Button
             variant="default"
             size="sm"
-            className="flex-1 hover:bg-blue-600"
+            className="flex-1"
             asChild
           >
             <Link href={`/dashboard/servers/${server.discord_server_id}`}>

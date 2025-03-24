@@ -228,7 +228,6 @@ export function ChannelSelector({
             JSON.stringify(preSelected) === JSON.stringify(selectedChannels)
           }
           className="gap-2"
-          variant="accept"
         >
           {isPending ? (
             <>
