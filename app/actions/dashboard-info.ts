@@ -30,15 +30,23 @@ export async function getJoinedServers(){
 
 export async function getDashboardInfo(){
   const { API_URL } = process.env;
-  const cookieStore = await cookies();
-  const access_token = cookieStore.get("token")?.value;
-  const user_id = cookieStore.get("discord_user_id")?.value;
-  const res = await fetch(`${API_URL}/analytics/files-all-servers?user_id=${user_id}`, {
-      method: "GET",
-      headers: {'Authorization': `Bearer ${access_token}`}
-  });
-  const userInfo = await res.json();
-  return userInfo
+  try {
+    const cookieStore = await cookies();
+    const access_token = cookieStore.get("token")?.value;
+    const user_id = cookieStore.get("discord_user_id")?.value;
+    const res = await fetch(`${API_URL}/analytics/files-all-servers?user_id=${user_id}`, {
+        method: "GET",
+        headers: {'Authorization': `Bearer ${access_token}`}
+    });
+    const userInfo = await res.json();
+    return {info: userInfo, error: null}
+  } catch (error) {
+    if (error instanceof Error) {
+      return {info: null, error: error.message}
+    } else {
+      return {info: null, error: "Unknown error"}
+    }
+  }
 }
 
 export async function getDiscordProfileInfo(){

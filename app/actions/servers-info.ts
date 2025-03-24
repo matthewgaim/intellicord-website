@@ -54,7 +54,7 @@ export async function saveChannelSelections(serverId: string, channelIds: string
     const cookieStore = await cookies();
     const user_id = cookieStore.get("discord_user_id")?.value;
     const access_token = cookieStore.get("token")?.value;
-    if (!user_id) return { success: false, message: "Cookies missing" }
+    if (!user_id || !access_token) return { success: false, message: "Cookies missing" }
 
     const postData = {
       user_id: user_id,
