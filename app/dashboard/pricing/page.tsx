@@ -161,7 +161,7 @@ export default function PricingPage() {
           custom plans tailored to your needs.
         </p>
         <Button asChild variant="outline" size="lg">
-          <Link href="mailto:matthewgaim@gmail.com">Let&apos;s Talk</Link>
+          <Link href="mailto:matthew@senarado.com">Let&apos;s Talk</Link>
         </Button>
       </div>
     </div>
