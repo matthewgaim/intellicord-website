@@ -42,3 +42,4 @@ export default function DashboardError({
   )
 }
 
+export const runtime = 'edge';
