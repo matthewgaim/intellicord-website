@@ -5,6 +5,9 @@ import { FileText, MessageSquare, Upload, ChevronRight } from "lucide-react";
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { getAuthLink } from "@/app/actions/landing";
+import Image from "next/image";
+import DiscordLogo from "@/public/DiscordSymbolWhite.svg";
+
 export default async function LandingPage() {
   const cookieStore = await cookies();
   const token = cookieStore.get("token")?.value;
@@ -36,10 +39,14 @@ export default async function LandingPage() {
                 </p>
                 <Button
                   size="lg"
-                  className="md:hidden bg-blue-600 hover:bg-blue-700 text-white border-0 h-12 px-8"
+                  className="md:hidden border-0 h-12 px-8"
                   asChild
                 >
-                  <Link href={token ? "/dashboard" : authLink}>{token ? "Dashboard" : "Add to your Server"}</Link>
+                  <Link href={token ? "/dashboard" : authLink}>
+                    {token ? "Dashboard" :
+                    <><Image src={DiscordLogo} className="h-4 w-4" alt={""}/>Add to your Server</>
+                    }
+                  </Link>
                 </Button>
               </div>
             </div>
@@ -182,10 +189,12 @@ export default async function LandingPage() {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Button
                       size="lg"
-                      className="bg-blue-600 hover:bg-blue-700 text-white border-0 h-12 px-8"
+                      className="text-white border-0 h-12 px-8"
                       asChild
                     >
-                      <Link href={authLink}>Add to Discord</Link>
+                      <Link href={authLink}>
+                        <Image src={DiscordLogo} className="h-4 w-4" alt={""}/>Add to your Server
+                      </Link>
                     </Button>
                   </div>
                 </div>

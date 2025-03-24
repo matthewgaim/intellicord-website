@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
-import { PlusCircle, Server, Users, Settings } from "lucide-react";
+import { PlusCircle, Users, Settings } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -13,6 +13,7 @@ import {
 import ServerSkeleton from "./skeleton";
 import Image from "next/image";
 import DiscordBoost from "@/public/DiscordBoost.png";
+import DiscordLogo from "@/public/DiscordSymbolBlack.svg"
 import * as motion from "motion/react-client";
 
 type ServerInfo = {
@@ -146,7 +147,7 @@ function ServerCard({ server }: { server: ServerInfo }) {
               href={`https://discord.com/channels/${server.discord_server_id}`}
               target="_blank"
             >
-              <Server className="h-4 w-4" />
+              <Image src={DiscordLogo} className="h-4 w-4" alt={`Open server on discord: ${server.name}`} />
             </Link>
           </Button>
         </div>

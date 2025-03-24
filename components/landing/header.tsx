@@ -49,7 +49,7 @@ export default function LandingHeader({token, authLink}: {token?: string, authLi
               How It Works
             </Link>
             <Button
-              className="bg-blue-600 hover:bg-blue-700 text-white border-0"
+              className="text-white border-0"
               asChild
             >
               <Link href={token ? "/dashboard" : authLink}>{token ? "Dashboard" : "Login"}</Link>
