@@ -70,7 +70,7 @@ export function FileAnalysisChart({ filesAnalyzed }: { filesAnalyzed: FilesAnaly
               }
             />
             <Line
-              type="natural"
+              type="linear"
               dataKey="amount"
               name="files"
               stroke="var(--color-files)"
