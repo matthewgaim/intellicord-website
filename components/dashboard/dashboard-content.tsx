@@ -17,29 +17,43 @@ type FilesAnalyzed = {
   amount: number
 }
 
-export function DashboardContent({files_analyzed, recentFiles, totalMessagesCount}: {files_analyzed: FilesAnalyzed[], recentFiles: FileInfo[], totalMessagesCount: number}) {
+export function DashboardContent({
+  files_analyzed,
+  recentFiles,
+  totalMessagesCount,
+}: { files_analyzed: FilesAnalyzed[]; recentFiles: FileInfo[]; totalMessagesCount: number }) {
   return (
-    <div className="flex-1 space-y-4 p-8 pt-6">
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card>
+    <div className="flex-1 space-y-4 p-4 sm:p-6 md:p-8 pt-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <Card className="w-full">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Files Analyzed</CardTitle>
           </CardHeader>
           <CardContent>
-            <AnimatedCounter value={recentFiles?.length} duration={250}/>
+            <AnimatedCounter 
+              value={recentFiles?.length} 
+              duration={250} 
+            />
           </CardContent>
         </Card>
-        <Card>
+        <Card className="w-full">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Replies Generated</CardTitle>
           </CardHeader>
           <CardContent>
-            <AnimatedCounter value={totalMessagesCount} duration={500}/>
+            <AnimatedCounter 
+              value={totalMessagesCount} 
+              duration={500} 
+            />
           </CardContent>
         </Card>
       </div>
-      <FileAnalysisChart filesAnalyzed={files_analyzed}/>
-      <FileAnalysis recentFiles={recentFiles}/>
+
+      <div className="w-full">
+        <FileAnalysisChart filesAnalyzed={files_analyzed} />
+      </div>
+
+      <FileAnalysis recentFiles={recentFiles} />
     </div>
   )
 }

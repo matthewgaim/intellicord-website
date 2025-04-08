@@ -43,12 +43,11 @@ export default function HowItWorks() {
                       <Server className="w-5 h-5 text-gray-700" />
                       <span>
                         Go to the{" "}
-                        <Link
+                        <p
                           className="font-bold text-purple-500"
-                          href="/dashboard/servers"
                         >
                           Servers
-                        </Link>{" "}
+                        </p>{" "}
                         tab and invite the bot to your server.
                       </span>
                     </li>

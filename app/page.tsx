@@ -42,7 +42,7 @@ export default async function LandingPage() {
                   className="md:hidden border-0 h-12 px-8"
                   asChild
                 >
-                  <Link href={token ? "/dashboard" : authLink}>
+                  <Link href={token ? "/dashboard" : authLink} prefetch={token ? true : false}>
                     {token ? "Dashboard" :
                     <><Image src={DiscordLogo} className="h-4 w-4" alt={""}/>Add to your Server</>
                     }
