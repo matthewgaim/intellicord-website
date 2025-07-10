@@ -14,7 +14,6 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { User, Mail, Shield, Calendar, Gem } from "lucide-react";
 import { cn, getDiscordAvatarUrl, getDiscordBannerURL } from "@/lib/utils";
-import { UpgradeButton } from "./upgrade-button";
 
 interface UserData {
   id: string;
@@ -57,7 +56,6 @@ export default async function ProfilePage() {
     }
     return user.username.substring(0, 2).toUpperCase();
   };
-  const isPremium = dbUserInfo?.plan !== "free";
   const bannerStyle = banner_url
     ? { backgroundImage: `url(${banner_url})` }
     : userData.accent_color
@@ -84,8 +82,6 @@ export default async function ProfilePage() {
                   <CardDescription className="text-gray-500">@{userData.username}</CardDescription>
                 </div>
               </div>
-
-              <UpgradeButton variant={isPremium ? "outline" : "premium"} />
             </div>
           </CardHeader>
 
