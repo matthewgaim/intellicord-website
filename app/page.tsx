@@ -28,7 +28,7 @@ export default async function LandingPage() {
                 </div>
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-gray-900">
                   Your Discord Server, <br />
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-red-500">
                     Boosted with AI
                   </span>
                 </h1>
