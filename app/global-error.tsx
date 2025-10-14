@@ -27,7 +27,7 @@ export default function GlobalError({
             <div className="flex justify-center">
               <button
                 onClick={() => reset()}
-                className="px-5 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800"
+                className="px-5 py-2.5 bg-primary hover:bg-primary/90 text-primary-foreground rounded-md transition-colors duration-200 focus:outline-hidden focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-800"
               >
                 Try again
               </button>

@@ -84,7 +84,7 @@ function ServerCard({ server }: { server: ServerInfo }) {
         <div className="absolute right-3 top-3">
           <Badge
             variant="secondary"
-            className="bg-background/80 backdrop-blur-sm"
+            className="bg-background/80 backdrop-blur-xs"
           >
             <span className="mr-1.5 h-2 w-2 rounded-full bg-green-500" />
             Active

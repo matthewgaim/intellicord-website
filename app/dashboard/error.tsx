@@ -19,7 +19,7 @@ export default function DashboardError({
 
   return (
     <div className="flex items-center justify-center min-h-[70vh] px-4">
-      <Card className="w-full max-w-md border-muted shadow-sm">
+      <Card className="w-full max-w-md border-muted shadow-xs">
         <CardHeader className="space-y-1">
           <CardTitle className="flex items-center gap-2 text-xl font-medium">
             <AlertCircle className="h-5 w-5 text-muted-foreground" />

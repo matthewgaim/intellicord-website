@@ -19,7 +19,7 @@ export default function HowItWorks() {
       {/* Desktop version with connection line */}
       <div className="hidden md:block relative max-w-4xl mx-auto">
         {/* Center connection line */}
-        <div className="absolute left-1/2 top-10 bottom-10 w-1 bg-gradient-to-b from-yellow-300 to-red-500 -translate-x-1/2 z-0"></div>
+        <div className="absolute left-1/2 top-10 bottom-10 w-1 bg-linear-to-b from-yellow-300 to-red-500 -translate-x-1/2 z-0"></div>
 
         {/* Step 1 - Left*/}
         <div className="flex items-center mb-16 relative z-10">

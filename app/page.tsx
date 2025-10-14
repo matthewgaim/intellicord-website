@@ -14,7 +14,7 @@ export default async function LandingPage() {
   const authLink = await getAuthLink();
 
   return (
-    <div className="flex min-h-[100dvh] flex-col from-white to-purple-50 bg-gradient-to-b">
+    <div className="flex min-h-dvh flex-col from-white to-purple-50 bg-linear-to-b">
       <LandingHeader token={token} authLink={authLink} />
       <main className="flex-1">
         {/* Hero Section */}
@@ -28,7 +28,7 @@ export default async function LandingPage() {
                 </div>
                 <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-gray-900">
                   Your Discord Server, <br />
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-red-500">
+                  <span className="bg-clip-text text-transparent bg-linear-to-r from-yellow-300 to-red-500">
                     Boosted with AI
                   </span>
                 </h1>
