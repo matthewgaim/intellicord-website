@@ -23,7 +23,7 @@ export function FileAnalysisChart({ filesAnalyzed }: { filesAnalyzed: FilesAnaly
     <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
-          <ChartNoAxesColumnIncreasing className="h-5 w-5 text-primary" />
+          <ChartNoAxesColumnIncreasing className="h-5 w-5 text-secondary" />
           Files Analyzed (Last 7 Days)
         </CardTitle>
       </CardHeader>
@@ -76,7 +76,7 @@ export function FileAnalysisChart({ filesAnalyzed }: { filesAnalyzed: FilesAnaly
                   type="linear"
                   dataKey="amount"
                   name="files"
-                  stroke="var(--color-files)"
+                  stroke="var(--color-primary)"
                   strokeWidth={2}
                   dot={{
                     r: 3,

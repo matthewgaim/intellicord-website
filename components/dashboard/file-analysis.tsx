@@ -36,7 +36,7 @@ export function FileAnalysis({ recentFiles }: { recentFiles: FileInfo[] }) {
     <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <FileText className="h-5 w-5 text-primary" />
+          <FileText className="h-5 w-5 text-secondary" />
           Recent Files Uploaded
         </CardTitle>
       </CardHeader>
