@@ -30,10 +30,10 @@
         const data = await res.json();
 
         console.log("Logged in as:", data);
-        window.location.href = "/dist/dashboard.html";
+        window.location.href = "/dashboard.html";
       } catch (err) {
         console.error(err);
-        window.location.href = `/dist/`;
+        window.location.href = `/`;
       }
     }
 
