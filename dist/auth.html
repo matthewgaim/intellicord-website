@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Discord Login Callback</title>
+</head>
+<body>
+  <h2>Logging you in...</h2>
+  <script>
+    async function handleDiscordCallback() {
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+      if (!code) {
+        window.location.href = "/";
+        return;
+      }
+      const API_URL = window.location.hostname === 'localhost'
+        ? 'http://localhost:8080'
+        : 'https://intellicord-api.senarado.com';
+      
+      try {
+        const res = await fetch(`${API_URL}/adduser`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ code })
+        });
+
+        if (!res.ok) throw new Error("Login failed");
+        const data = await res.json();
+
+        console.log("Logged in as:", data);
+        // You can store this locally or rely on cookies set by API
+        window.location.href = "/dist/dashboard.html";
+      } catch (err) {
+        console.error(err);
+        window.location.href = `/dist/`;
+      }
+    }
+
+    handleDiscordCallback();
+  </script>
+</body>
+</html>
