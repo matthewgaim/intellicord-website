@@ -22,7 +22,8 @@
         const res = await fetch(`${API_URL}/adduser`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ code })
+          body: JSON.stringify({ code }),
+          credentials: "include"
         });
 
         if (!res.ok) throw new Error("Login failed");
