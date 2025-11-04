@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>Your Servers - Intellicord</title>
+        <link rel="stylesheet" href="./styles/output.css">
+    </head>
+    <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
+        <header>
+            <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
+                <img src="./public/assets/images/intellicord_logo.png" width="32" height="32" />
+                <a href="index.html" class="font-semibold text-lg">Intellicord</a>
+                <nav class="space-x-4">
+                    <a href="dashboard.html" class="text-slate-600 hover:text-slate-900">Dashboard</a>
+                    <a href="servers.html" class="text-slate-900 font-semibold">Servers</a>
+                    <a href="profile.html" class="text-slate-600 hover:text-slate-900">Profile</a>
+                    <a id="login" class="ml-2 px-3 py-1 rounded bg-yellow-600 text-white hover:bg-indigo-700">Login</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="flex-1">
+            <section class="py-12 md:py-16">
+                <div class="max-w-6xl mx-auto px-4 md:px-6">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+                        <div>
+                            <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                                Your Servers
+                            </h1>
+                            <p class="text-gray-600 text-lg">
+                                Manage Intellicord across all your Discord servers
+                            </p>
+                        </div>
+                        <a id="invite-bot-button" class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md transition font-semibold whitespace-nowrap">
+                            <img src="./public/assets/icons/discord-symbol-white.svg" alt="Discord" class="h-5 w-5" />
+                            Invite Bot to Server
+                        </a>
+                    </div>
+
+                    <!-- Server Stats -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+                        <div class="bg-white p-6 rounded-lg border border-gray-200">
+                            <div class="text-3xl font-bold text-indigo-600 mb-1" id="total-servers">0</div>
+                            <div class="text-gray-600">Total Servers</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg border border-gray-200">
+                            <div class="text-3xl font-bold text-purple-600 mb-1" id="total-members">0</div>
+                            <div class="text-gray-600">Total Members</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg border border-gray-200">
+                            <div class="text-3xl font-bold text-cyan-600 mb-1" id="active-servers">0</div>
+                            <div class="text-gray-600">Active This Week</div>
+                        </div>
+                    </div>
+
+                    <!-- Servers Grid -->
+                    <div id="servers-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        
+                    </div>
+
+                    <!-- Empty State -->
+                    <div id="empty-state" class="text-center py-16">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">No Servers Yet</h3>
+                        <p class="text-gray-600 mb-6 max-w-md mx-auto">
+                            You haven't invited Intellicord to any servers yet.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="bg-slate-50 border-t border-gray-200 py-4 text-center">
+            <p class="text-gray-600 text-sm px-4">
+                © 2025 Senarado Solutions LLC. All rights reserved.
+            </p>
+        </footer>
+        <script src="./scripts/servers.js"></script>
+    </body>
+</html>
