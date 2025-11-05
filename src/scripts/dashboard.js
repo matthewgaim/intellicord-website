@@ -51,16 +51,18 @@ async function filesAllServers() {
       }
     });
     
-    let table = document.getElementById("file-details-table");
     // show file details
+    let table = document.getElementById("file-details-table-body");
     for (let i = 0; i < file_details.length; i++) {
       const newRow = document.createElement("tr");
+      newRow.setAttribute("scope", "row");
+      newRow.setAttribute("class", "bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200");
       const rowContent = `
-        <td>${file_details[i].name}</td>
-        <td>${file_details[i].type}</td>
-        <td>${file_details[i].size}</td>
-        <td>${file_details[i].analyzed_date}</td>
-        <td>${file_details[i].discord_server_id}</td>
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${file_details[i].name}</td>
+        <td class="px-6 py-4">${file_details[i].type}</td>
+        <td class="px-6 py-4">${file_details[i].size}</td>
+        <td class="px-6 py-4">${file_details[i].analyzed_date}</td>
+        <td class="px-6 py-4">${file_details[i].discord_server_id}</td>
       `;
 
       newRow.innerHTML = rowContent;
