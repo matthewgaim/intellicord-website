@@ -50,6 +50,21 @@ async function filesAllServers() {
         }
       }
     });
+
+    // show file details
+    for (let i = 0; i < file_details.length; i++) {
+      const newRow = document.createElement("tr");
+      const rowContent = `
+        <td>${file_details[i].name}</td>
+        <td>${file_details[i].type}</td>
+        <td>${file_details[i].size}</td>
+        <td>${file_details[i].analyzed_date}</td>
+        <td>${file_details[i].discord_server_id}</td>
+      `;
+
+      newRow.innerHTML = rowContent;
+      table.appendChild(newRow);
+    }
   } catch (err) {
     console.error(err);
     window.location.href = `/`;
