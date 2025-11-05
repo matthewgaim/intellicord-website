@@ -50,7 +50,8 @@ async function filesAllServers() {
         }
       }
     });
-
+    
+    let table = document.getElementById("file-details-table");
     // show file details
     for (let i = 0; i < file_details.length; i++) {
       const newRow = document.createElement("tr");
