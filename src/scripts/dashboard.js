@@ -2,6 +2,16 @@ const API_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:5500'
     : 'https://intellicord-api.senarado.com';
 
+function formatBytes(bytes, decimals = 2) {
+  if (bytes === 0) return "0 Bytes";
+
+  const k = 1024;
+  const sizes = ["Bytes", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k))
+
+  return `${(bytes / Math.pow(k, i)).toFixed(decimals)} ${sizes[i]}`
+}
+
 async function filesAllServers() {
 
   try {
@@ -60,9 +70,11 @@ async function filesAllServers() {
       const rowContent = `
         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">${file_details[i].name}</td>
         <td class="px-6 py-4">${file_details[i].type}</td>
-        <td class="px-6 py-4">${file_details[i].size}</td>
+        <td class="px-6 py-4">${formatBytes(file_details[i].size)}</td>
         <td class="px-6 py-4">${file_details[i].analyzed_date}</td>
-        <td class="px-6 py-4">${file_details[i].discord_server_id}</td>
+        <td class="px-6 py-4 text-right">
+          <a href="https://discord.com/channels/${file_details[i].discord_server_id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Open</a>
+        </td>
       `;
 
       newRow.innerHTML = rowContent;
