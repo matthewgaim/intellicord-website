@@ -50,7 +50,6 @@ async function filesAllServers() {
       },
       options: {
         responsive: true,
-        maintainAspectRatio: false,
         scales: {
           x: {
             ticks: { color: 'rgb(30 41 59)' },
