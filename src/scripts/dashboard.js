@@ -29,10 +29,10 @@ async function filesAllServers() {
     let dates = files_analyzed.map((file) => file.date);
     let daily_file_amount = files_analyzed.map((file) => file.amount);
     
-    const ctx = document.getElementById("myChart");
-    if (!ctx) return;
+    const chartId = document.getElementById("files-uploaded-chart");
+    if (!chartId) return;
 
-    new Chart(ctx, {
+    new Chart(chartId, {
       type: 'line',
       data: {
         labels: dates,
@@ -40,20 +40,32 @@ async function filesAllServers() {
           label: 'Files Uploaded',
           data: daily_file_amount,
           borderWidth: 2,
-          backgroundColor: 'rgb(0,0,0)',
           borderColor: 'rgb(239, 163, 0)',
-          borderRadius: 6,
+          tension: 0.4,
+          pointBackgroundColor: 'rgb(239, 163, 0)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgb(239, 163, 0)',
         }]
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         scales: {
-          y: { beginAtZero: true }
+          x: {
+            ticks: { color: 'rgb(30 41 59)' },
+            grid: { color: 'rgba(226, 232, 240, 0.4)' },
+          },
+          y: { 
+            beginAtZero: true,
+            ticks: { color: 'rgb(30 41 59)' },
+            grid: { color: 'rgba(226, 232, 240, 0.4)' },
+          }
         },
         plugins: {
           legend: {
             labels: {
-              color: '#1e293b',
+              color: 'rgb(30 41 59)',
               font: { size: 14 }
             }
           }

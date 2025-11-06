@@ -10,7 +10,7 @@
     <body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col">
         <header>
             <div class="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
-                <img src="./public/assets/images/intellicord_logo.png" width="32" height="32" />
+                <img alt="Intellicord Logo" src="./public/assets/images/intellicord_logo.png" width="32" height="32" />
                 <a href="index.html" class="font-semibold text-lg">Intellicord</a>
                 <nav class="space-x-4">
                     <a href="dashboard.html" class="text-slate-600 hover:text-slate-900">Dashboard</a>
@@ -24,11 +24,14 @@
         <main class="flex-1">
             <div class="max-w-5xl mx-auto px-4 py-8">
                 <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
-                <p class="text-gray-700 mb-4">Welcome to your Intellicord dashboard. Here you can manage your servers, view analytics, and customize your profile.</p>
-                <canvas id="myChart" width="400" height="200"></canvas>
 
-                <div id="file-details" class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                    <h2>Uploaded File Details</h1>
+                <div class="bg-white shadow-lg p-6 rounded-lg mb-8">
+                    <h2 class="text-xl font-semibold mb-4 text-slate-900">Files Uploaded Past 7 Days</h2>
+                    <canvas id="files-uploaded-chart" width="400" height="200"></canvas>
+                </div>
+
+                <div id="file-details" class="mt-8 relative overflow-x-auto shadow-md sm:rounded-lg">
+                    <h2 class="text-xl font-semibold p-4 bg-gray-50 dark:bg-gray-700 text-slate-900 dark:text-gray-400 rounded-t-lg">Uploaded File Details</h2>
                     <table id="file-details-table" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -36,12 +39,10 @@
                                 <th scope="col" class="px-6 py-3">Type</th>
                                 <th scope="col" class="px-6 py-3">Size</th>
                                 <th scope="col" class="px-6 py-3">Date</th>
-                                <th scope="col" class="px-6 py-3">Server</th>
+                                <th scope="col" class="px-6 py-3 text-right">Server Link</th>
                             </tr>
                         </thead>
-                        <tbody id="file-details-table-body">
-                            
-                        </tbody>
+                        <tbody id="file-details-table-body"></tbody>
                     </table>
                 </div>
             </div>
