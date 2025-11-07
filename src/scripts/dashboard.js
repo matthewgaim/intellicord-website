@@ -84,7 +84,7 @@ async function filesAllServers() {
         <td class="px-6 py-4">${formatBytes(file_details[i].size)}</td>
         <td class="px-6 py-4">${file_details[i].analyzed_date}</td>
         <td class="px-6 py-4 text-right">
-          <a href="https://discord.com/channels/${file_details[i].discord_server_id}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Open</a>
+          <a href="https://discord.com/channels/${file_details[i].discord_server_id}" class="font-medium text-[#382111] dark:text-blue-500 hover:underline">Open</a>
         </td>
       `;
 
