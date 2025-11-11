@@ -1,5 +1,5 @@
 const API_URL = window.location.hostname === 'localhost'
-    ? 'http://localhost:5500'
+    ? 'http://localhost:8080'
     : 'https://intellicord-api.senarado.com';
 
 function formatBytes(bytes, decimals = 2) {

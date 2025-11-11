@@ -1,12 +1,12 @@
 const hostname = window.location.hostname === "localhost"
-    ? "http://localhost:5500"
+    ? "http://localhost:5500/dist"
     : "https://intellicord.senarado.com";
 const DISCORD_CLIENT_ID = window.location.hostname === 'localhost'
     ? '1343462968142200932'
     : '1339021294234239028';
 const DISCORD_REDIRECT_URI = `${hostname}/auth.html`;
 const API_URL = window.location.hostname === 'localhost'
-    ? 'http://localhost:5500'
+    ? 'http://localhost:8080'
     : 'https://intellicord-api.senarado.com';
 
 const permissions = "8"; // Admin

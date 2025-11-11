@@ -1,7 +1,5 @@
-console.log("We're looking at main.ts!");
-
 const hostname = window.location.hostname === "localhost"
-    ? "http://localhost:3000"
+    ? "http://localhost:5500/dist"
     : "https://intellicord.senarado.com";
 
 const scope = 'identify email guilds';
