@@ -23,11 +23,18 @@ async function filesAllServers() {
 
     if (!res.ok) throw new Error("Login failed");
     const data = await res.json();
-    const file_details = data.file_details;
-    const files_analyzed = data.files_analyzed;
-    const total_messages_count = data.total_messages_count;
-    let dates = files_analyzed.map((file) => file.date);
-    let daily_file_amount = files_analyzed.map((file) => file.amount);
+    const file_details = data.file_details || [];
+    const files_analyzed = data.files_analyzed || [];
+    const total_messages_count = data.total_messages_count || 0;
+
+    let dates = Array.isArray(files_analyzed) 
+      ? files_analyzed.map(f => f.date) 
+      : [];
+
+    let daily_file_amount = Array.isArray(files_analyzed) 
+      ? files_analyzed.map(f => f.amount) 
+      : [];
+
     
     const chartId = document.getElementById("files-uploaded-chart");
     if (!chartId) return;
