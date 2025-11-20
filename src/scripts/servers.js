@@ -1,13 +1,14 @@
-const hostname = window.location.hostname === "localhost"
-    ? "http://localhost:5500/dist"
-    : "https://intellicord.senarado.com";
-const DISCORD_CLIENT_ID = window.location.hostname === 'localhost'
-    ? '1343462968142200932'
-    : '1339021294234239028';
+const production = window.location.hostname !== "localhost";
+const hostname = production
+    ? "https://intellicord.senarado.com"
+    : "http://localhost:5500/dist";
+const DISCORD_CLIENT_ID = production
+    ? '1339021294234239028'
+    : '1343462968142200932';
 const DISCORD_REDIRECT_URI = `${hostname}/auth.html`;
-const API_URL = window.location.hostname === 'localhost'
-    ? 'http://localhost:8080'
-    : 'https://intellicord-api.senarado.com';
+const API_URL = production
+    ? 'https://intellicord-api.senarado.com'
+    : 'http://localhost:8080';
 
 const permissions = "8"; // Admin
 const scopes = "bot applications.commands identify email guilds connections guilds.join";
