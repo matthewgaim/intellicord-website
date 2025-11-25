@@ -13,9 +13,9 @@
                 <a href="index.html" class="font-semibold text-lg">Intellicord</a>
                 <nav class="space-x-4">
                     <a href="dashboard.html" class="text-slate-600 hover:text-slate-900">Dashboard</a>
-                    <a href="servers.html" class="text-slate-900 font-semibold">Servers</a>
+                    <a href="servers.html" class="text-slate-600 hover:text-slate-900">Servers</a>
                     <a href="profile.html" class="text-slate-600 hover:text-slate-900">Profile</a>
-                    <a id="login" class="ml-2 px-3 py-1 rounded bg-yellow-600 text-white hover:bg-indigo-700">Login</a>
+                    <a id="login" class="ml-2 px-3 py-1 rounded bg-yellow-600 text-white hover:bg-yellow-800 transition-colors">Logout</a>
                 </nav>
             </div>
         </header>
@@ -32,35 +32,27 @@
                                 Manage Intellicord across all your Discord servers
                             </p>
                         </div>
-                        <a id="invite-bot-button" class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md transition font-semibold whitespace-nowrap">
+                        <a id="invite-bot-button" href="#" class="inline-flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md transition font-semibold whitespace-nowrap">
                             <img src="./public/assets/icons/discord-symbol-white.svg" alt="Discord" class="h-5 w-5" />
                             Invite Bot to Server
                         </a>
                     </div>
 
-                    <!-- Server Stats -->
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
                         <div class="bg-white p-6 rounded-lg border border-gray-200">
-                            <div class="text-3xl font-bold text-indigo-600 mb-1" id="total-servers">0</div>
+                            <div class="text-3xl font-bold text-yellow-600 mb-1" id="total-servers">0</div>
                             <div class="text-gray-600">Total Servers</div>
                         </div>
                         <div class="bg-white p-6 rounded-lg border border-gray-200">
-                            <div class="text-3xl font-bold text-purple-600 mb-1" id="total-members">0</div>
+                            <div class="text-3xl font-bold text-yellow-600 mb-1" id="total-members">0</div>
                             <div class="text-gray-600">Total Members</div>
                         </div>
-                        <div class="bg-white p-6 rounded-lg border border-gray-200">
-                            <div class="text-3xl font-bold text-cyan-600 mb-1" id="active-servers">0</div>
-                            <div class="text-gray-600">Active This Week</div>
-                        </div>
                     </div>
 
-                    <!-- Servers Grid -->
                     <div id="servers-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        
+                        <!-- Cards with joined servers will appear here -->
                     </div>
-
-                    <!-- Empty State -->
-                    <div id="empty-state" class="text-center py-16">
+                    <div id="empty-state" class="text-center py-16 hidden">
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">No Servers Yet</h3>
                         <p class="text-gray-600 mb-6 max-w-md mx-auto">
                             You haven't invited Intellicord to any servers yet.
