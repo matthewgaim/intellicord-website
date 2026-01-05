@@ -4,9 +4,9 @@
   "description": "The official website for the Intellicord Discord bot.",
   "main": "index.js",
   "scripts": {
-    "build:css": "npx @tailwindcss/cli -i ./src/styles/input.css -o ./dist/styles/output.css --minify",
+    "build:css": "bunx @tailwindcss/cli -i ./src/styles/input.css -o ./dist/styles/output.css --minify",
     "move-files": "mkdir -p dist/scripts && cp -r src/scripts/* dist/scripts && cp -r src/*.html dist/ && cp -r public dist/",
-    "build": "npm i && npm run build:css && npm run move-files"
+    "build": "bun i && bun run build:css && bun run move-files && bun ./dist/*.html"
   },
   "repository": {
     "type": "git",

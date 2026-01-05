@@ -1,11 +1,11 @@
 const production = window.location.hostname !== "localhost";
 const hostname = production
     ? "https://intellicord.senarado.com"
-    : "http://localhost:5500/dist";
+    : "http://localhost:3000";
 const DISCORD_CLIENT_ID = production
     ? '1339021294234239028'
     : '1343462968142200932';
-const DISCORD_REDIRECT_URI = `${hostname}/auth.html`;
+const DISCORD_REDIRECT_URI = `${hostname}/auth`;
 const API_URL = production
     ? 'https://intellicord-api.senarado.com'
     : 'http://localhost:8080';
